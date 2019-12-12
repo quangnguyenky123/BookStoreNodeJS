@@ -1,0 +1,278 @@
+﻿<!DOCTYPE html>
+<html lang="">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+	<title>BookStore Management</title>
+
+	<!-- Bootstrap CSS -->
+
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+		  crossorigin="anonymous">
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/admin/css/index.css">
+	<link rel="stylesheet" href="/admin/css/list.css">
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
+</head>
+
+<body>
+	<!--------------------------------------LAYOUT--------------------------------------------->
+	<div class="content" ng-app="loadNXB" ng-controller="myCtrl">
+		<nav class="navbar navbar-default" role="navigation">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand fas fa-book header-title" >&nbsp;BookStore Management</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse navbar-ex1-collapse" ng-init="myFunctionLoadAccessControl()">
+				<ul class="nav navbar-nav" style="color:black;">
+					<li id="box-user">
+						<div id="box-user-left">
+							<img id="img-admin" src="/admin/images/man.png">
+						</div>
+						<div id="box-user-right">
+							<b id="login-user"></b>
+							<p>{{name}}</p>
+						</div>
+					</li>
+					<li class="test" ng-repeat="accessControl in accessControls">
+						<a href="{{accessControl.Controller[0].location}}" class="{{accessControl.Controller[0].icon}}"> {{accessControl.Controller[0].caption}}</a> <!--@Url.Action(" Index","Home")-->
+					</li>
+					<li class="test" style="cursor:pointer">
+						<a id="logout" class="fas fa-sign-out-alt" ng-click="myFunctionLogOut()">&nbsp;Đăng xuất</a>
+					</li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</nav>
+		<!------------------------------------------BẢNG NHÀ XUẤT BẢN------------------------------------------------->
+		<div class="container" >
+			<script src="js/Scripts/controllers/NXBController.js"></script>
+			<div class="title">
+				<h4>Quản lý nhà xuất bản</h4>
+			</div>
+			<div class="row">
+				<div class="add-item">
+					<a ng-click="myFunctionCreate()" class="btn btn-default" id="btn-add" role="button">Thêm mới</a>
+				</div>
+				<div class="search">
+					<select ng-model="pageSize" name="" id="pageSize" class="text-inline-select" ng-change="myFunctionLoadData(true)">
+						<option value="5">5 rows</option>
+						<option value="10">10 rows</option>
+						<option value="20">20 rows</option>
+					</select>
+					<input ng-model="searchString"  ng-keyup="myFunctionLoadData(true)" type="text" id="search" class="text-inline-input" placeholder="&#xF002; Nhập tên nhà xuất bản...">
+
+				</div>
+				<div class="table-responsive" ng-init="myFunctionLoadData()">
+					<table class="table table-hover table-bordered">
+						<thead>
+							<tr>
+								<th>Tên nhà xuất bản</th>
+								<th>Mô tả</th>
+								<th>Trạng thái</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in items">
+								<td>{{ item.TenNhaXuatBan }}</td>
+								<td>{{ item.MoTa }}</td>
+								<td><span class="{{item.TenTrangThai[0].Class}}">{{ item.TenTrangThai[0].TenTrangThai }}</span></td>
+								<td>
+									<button ng-click="myFunctionUpdate(item._id)" type="button" class="fas fa-pen blue btn-update" data-id="{{item._id}}" title="Click để cập nhật"></button>
+									<button ng-click="myFunctionDetail(item._id)" type="button" class="fas fa-info green btn-detail" data-id="{{item._id}}" title="Click để xem chi tiết"></button>
+									<button ng-click="myFunctionDelete(item._id)" type="button" class="fas fa-trash red btn-delete" data-id="{{item._id}}" title="Click để xóa"></button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!---------------------------------------POPUP XEM ---------------------------------------->
+					<div id="publisher-detail" class="modal fade" role="dialog">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Chi tiết nhà xuất bản</h4>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<div class="form-group row detail-row">
+												<label class="col-sm-3 col-form-label detail-lbl" for="">Tên nhà xuất bản :</label>
+												<div class="col-sm-9">
+													<input type="text" value="{{SelectedItem[0].TenNhaXuatBan}}" class="form-control" id="" disabled>
+												</div>
+											</div>
+											<div class="form-group row detail-row">
+												<label class="col-sm-3 col-form-label detail-lbl" for="">Trạng thái :</label>
+												<div class="col-sm-9">
+													<input type="text" value="{{SelectedItem[0].TenTrangThai[0].TenTrangThai}}" class="form-control" id="" disabled>
+												</div>
+											</div>
+											<div class="form-group row detail-row">
+												<label class="col-sm-3 col-form-label detail-lbl" for="">Mô tả :</label>
+												<div class="col-sm-9">
+													<textarea class="form-control" name="" id="" cols="30" rows="10" disabled>{{SelectedItem[0].MoTa}}</textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger modal-btn" data-dismiss="modal">Đóng</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!---------------------------------------POPUP SỬA ---------------------------------------->
+					<div id="publisher-update" class="modal fade" role="dialog">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<form id="frm-update" method="post">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Cập nhật nhà xuất bản</h4>
+									</div>
+									<div class="modal-body">
+										<div class="row">
+											<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+												<div class="form-group row detail-row">
+													<label class="col-sm-3 col-form-label detail-lbl" for="">Tên nhà xuất bản :</label>
+													<div class="col-sm-9">
+														<input type="text" ng-model="SelectedItem[0].TenNhaXuatBan" class="form-control" id="txtTennxb" name="txtTennxb">
+													</div>
+												</div>
+												<div class="form-group row detail-row">
+													<label class="col-sm-3 col-form-label detail-lbl" for="">Trạng thái :</label>
+													<div class="col-sm-9">
+														<select class="form-control" ng-model="SelectedItem[0].IdTrangThai">
+															<option ng-repeat="option in Options" value="{{option._id}}">{{option.TenTrangThai}}</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group row detail-row">
+													<label class="col-sm-3 col-form-label detail-lbl" for="">Mô tả :</label>
+													<div class="col-sm-9">
+														<textarea class="form-control" ng-model="SelectedItem[0].MoTa" name="txtMoTa" id="txtMoTa" cols="30" rows="10">{{SelectedItem[0].MoTa}}</textarea>
+													</div>
+												</div>
+
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-danger modal-btn" data-dismiss="modal">Đóng</button>
+										<button id="btn-update" ng-click="myFunctionUpdateModel()" type="submit" class="btn btn-success modal-btn">Cập nhật</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!---------------------------------------POPUP THÊM ---------------------------------------->
+					<div id="publisher-create" class="modal fade" role="dialog">
+						<div class="modal-dialog modal-lg">
+							<form id="frm-create" method="post">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Thêm nhà xuất bản mới</h4>
+									</div>
+									<div class="modal-body">
+										<div class="row">
+											<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+												<div class="form-group row detail-row">
+													<label class="col-sm-3 col-form-label detail-lbl" for="">Tên nhà xuất bản :</label>
+													<div class="col-sm-9">
+														<input ng-model="ModelCreate[0].TenNhaXuatBan" type="text" value="" class="form-control" name="publisherName" id="publisherName">
+													</div>
+												</div>
+												<div class="form-group row detail-row">
+													<label class="col-sm-3 col-form-label detail-lbl" for="">Trạng thái :</label>
+													<div class="col-sm-9">
+														<select class="form-control" ng-model="ModelCreate[0].IdTrangThai" id="publisherStatus">
+															<option ng-repeat="option in Options" value="{{option._id}}">{{option.TenTrangThai}}</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group row detail-row">
+													<label class="col-sm-3 col-form-label detail-lbl" for="">Mô tả :</label>
+													<div class="col-sm-9">
+														<textarea class="form-control" ng-model="ModelCreate[0].MoTa" name="" id="publisherDescription" cols="30" rows="10">{{ModelCreate[0].MoTa}}</textarea>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-danger modal-btn" data-dismiss="modal">Đóng</button>
+										<button ng-click="myFunctionCreateModel()" id="btn-tao" type="submit" class="btn btn-success modal-btn">Tạo</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<!-------------------------------------POPUP DELETED-------------------------------------------->
+					<div id="modal-delete" class="modal fade" role="dialog">
+						<div class="modal-dialog modal-lg">
+							<!-- Modal content-->
+							<div class="modal-content" id="deleted">
+								<form>
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Xóa danh mục</h4>
+									</div>
+									<div class="modal-body">
+										<div>
+											<h4 style="text-align: center; text-transform: uppercase" class="alert-danger">Bạn có muốn xóa danh mục này không???</h4>
+										</div>
+
+									</div>
+									<div class="modal-footer">
+										<div class="row">
+											<div class="col-xs-8"></div>
+											<div class="col-xs-2">
+												<button ng-click="myFunctionDeleteModel()" style="text-align: center;width:100%" id="btn-deleted modal-btn" type="button" class="btn btn-success">Có</button>
+											</div>
+											<div class="col-xs-2">
+												<button data-dismiss="modal" style="text-align: center;width:100%" type="button" class="btn btn-danger modal-btn">Không</button>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="pagination" id="pagination"></div>
+			</div>
+			<div class="footer">
+				<h5>&copy; BookStore Management. All right reserved.</h5>
+			</div>
+		</div>
+	</div>
+	<script src="/js/modal.js"></script>
+	<script src="/admin/js/bootstrap-notify.min.js"></script>
+	<script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+	<!-- Bootstrap JavaScript -->
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="/js/Scripts/plugin/mustache.min.js"></script>
+	<script src="/js/Scripts/plugin/jquery.twbsPagination.min.js"></script>
+	<script src="/js/Scripts/plugin/core.js"></script>
+	<script src="/js/Scripts/plugin/md5.js"></script>
+	
+</body>
+</html>

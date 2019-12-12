@@ -1,0 +1,170 @@
+﻿
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+	<title>BookStore Management</title>
+
+	<!-- Bootstrap CSS -->
+
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+		  crossorigin="anonymous">
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/admin/css/index.css">
+	<link rel="stylesheet" href="/admin/css/list.css">
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
+</head>
+
+<body>
+	<!--------------------------------------LAYOUT--------------------------------------------->
+	<div class="content" ng-app="loadThongTinCaNhan" ng-controller="myCtrl">
+		<nav class="navbar navbar-default" role="navigation">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand fas fa-book header-title">&nbsp;BookStore Management</a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse navbar-ex1-collapse" ng-init="myFunctionLoadAccessControl()">
+				<ul class="nav navbar-nav" style="color:black;">
+					<li id="box-user">
+						<div id="box-user-left">
+							<img id="img-admin" src="/admin/images/man.png">
+						</div>
+						<div id="box-user-right">
+							<b id="login-user"></b>
+							<p>{{name}}</p>
+						</div>
+					</li>
+					<li class="test" ng-repeat="accessControl in accessControls">
+						<a href="{{accessControl.Controller[0].location}}" class="{{accessControl.Controller[0].icon}}"> {{accessControl.Controller[0].caption}}</a> <!--@Url.Action(" Index","Home")-->
+					</li>
+					<li class="test" style="cursor:pointer">
+						<a id="logout" class="fas fa-sign-out-alt" ng-click="myFunctionLogOut()">&nbsp;Đăng xuất</a>
+					</li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</nav>
+		<!------------------------------------------BẢNG TÀI KHOẢN------------------------------------------------->
+		<div class="container" ng-init="myFunctionLoadData()">
+			<script src="/js/Scripts/controllers/ThongTinCaNhanController.js"></script>
+			<div class="title">
+				<h4>Thông tin cá nhân</h4>
+			</div>
+			<div class="row">
+				<form id="frm-update">
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-sm-6">
+								<h3>Thông tin người dùng</h3>
+								<div class="form-group">
+									<label class="modal-label">Họ và tên:</label>
+									<input type="text" id="txtTen" name="txtTen" ng-model="SelectedItem[0].TenQuanTriVien" class="form-control modal-input">
+								</div>
+								<div class="form-group">
+									<label class="modal-label">Số điện thoại :</label>
+									<input type="text" id="txtSoDienThoai" name="txtSoDienThoai" ng-model="SelectedItem[0].SoDienThoai" class="form-control modal-input">
+								</div>
+								<div class="form-group">
+									<label class="modal-label">Địa chỉ :</label>
+									<input type="text" id="txtDiaChi" name="txtDiaChi" ng-model="SelectedItem[0].DiaChi" class="form-control modal-input">
+								</div>
+								<div class="form-group">
+									<label class="modal-label">Email :</label>
+									<input style="font-weight:bolder" type="text" name="txtEmail" id="txtEmail" class="form-control modal-input" value="{{SelectedItem[0].Email}}" disabled>
+								</div>
+							</div>
+							<div class="col-sm-6" ng-repeat="item in Account">
+								<h3>Thông tin tài khoản</h3>
+								<div class="form-group">
+									<label class="modal-label">Tên tài khoản :</label>
+									<input style="font-weight:bolder" type="text" class="form-control modal-input" value="{{item.TaiKhoan}}" disabled>
+								</div>
+								<div class="form-group">
+									<label class="modal-label">Mật khẩu :</label>
+									<input style="font-weight:bolder" type="password" class="form-control modal-input" value="{{item.MatKhau}}" disabled>
+								</div>
+								<div class="form-group">
+									<button ng-click="myFunctionUpdatePassword()"  type="submit" class="btn btn-success modal-btn">Đổi mật khẩu</button>
+								</div>
+							</div>
+							<div class="col-sm-6" ng-repeat="item in AccountType">
+								<h3>Thông tin tài khoản</h3>
+								<div><img ng-src="/images/IconTaiKhoan/{{item.Icon}}" style="width:120px;height:120px;" /></div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button ng-click="myFunctionUpdateModel()" type="submit" class="btn btn-success modal-btn">Lưu thông tin</button>
+					</div>
+				</form>
+			</div>
+			<div class="footer">
+				<h5>&copy; BookStore Management. All right reserved.</h5>
+			</div>
+		</div>
+		<!---------------------------------------POP UP DOI MAT KHAU------------------------------------------>
+		<div id="user-update-password-modal" class="modal fade" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<form id="frm-info">
+						<div class="modal-header">
+							<h4 class="modal-title">Đổi mật khẩu</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<label id="txt-id" data-id="" hidden></label>
+									<div class="form-group">
+										<label for="txt-username">Tài Khoản:</label>
+										<input ng-model="NewPassword[0].UserName" type="text" class="form-control" name="txt-username" id="txt-username">
+									</div>
+									<div class="form-group">
+										<label for="txt-phone">Mật khẩu cũ:</label>
+										<input ng-model="NewPassword[0].OldPassword" type="password" class="form-control" id="txt-oldPassword" name="txt-oldPassword">
+									</div>
+									<div class="form-group">
+										<label for="txt-address">Mật khẩu mới:</label>
+										<input ng-model="NewPassword[0].NewPassword" type="password" class="form-control" id="txt-newPassword" name="txt-newPassword">
+									</div>
+									<div class="form-group">
+										<label for="txt-email">Nhập lại mật khẩu mới:</label>
+										<input ng-model="NewPassword[0].RetypeNewPassword" type="password" class="form-control" id="txt-retypeNewPassword" name="txt-retypeNewPassword">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger modal-btn" data-dismiss="modal">Hủy</button>
+							<button ng-click="myFunctionUpdateModelPassword()" id="btn-confirm" type="submit" class="btn btn-success modal-btn">Xác nhận</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="/js/modal.js"></script>
+	<script src="/admin/js/bootstrap-notify.min.js"></script>
+	<script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+	<!-- Bootstrap JavaScript -->
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="/js/Scripts/plugin/mustache.min.js"></script>
+	<script src="/js/Scripts/plugin/jquery.twbsPagination.min.js"></script>
+	<script src="/js/Scripts/plugin/core.js"></script>
+	<script src="/js/Scripts/plugin/md5.js"></script>
+</body>
+</html>

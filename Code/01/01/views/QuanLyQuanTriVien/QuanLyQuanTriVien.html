@@ -1,0 +1,253 @@
+﻿
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+	<title>BookStore Management</title>
+
+	<!-- Bootstrap CSS -->
+
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+		  crossorigin="anonymous">
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/admin/css/index.css">
+	<link rel="stylesheet" href="/admin/css/list.css">
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
+</head>
+
+<body>
+	<!--------------------------------------LAYOUT--------------------------------------------->
+	<div class="content" ng-app="loadQuanTriVien" ng-controller="myCtrl">
+		<nav class="navbar navbar-default" role="navigation">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand fas fa-book header-title">&nbsp;BookStore Management</a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse navbar-ex1-collapse" ng-init="myFunctionLoadAccessControl()">
+				<ul class="nav navbar-nav" style="color:black;">
+					<li id="box-user">
+						<div id="box-user-left">
+							<img id="img-admin" src="/admin/images/man.png">
+						</div>
+						<div id="box-user-right">
+							<b id="login-user"></b>
+							<p>{{name}}</p>
+						</div>
+					</li>
+					<li class="test" ng-repeat="accessControl in accessControls">
+						<a href="{{accessControl.Controller[0].location}}" class="{{accessControl.Controller[0].icon}}"> {{accessControl.Controller[0].caption}}</a> <!--@Url.Action(" Index","Home")-->
+					</li>
+					<li class="test" style="cursor:pointer">
+						<a id="logout" class="fas fa-sign-out-alt" ng-click="myFunctionLogOut()">&nbsp;Đăng xuất</a>
+					</li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</nav>
+		<!------------------------------------------BẢNG TÀI KHOẢN------------------------------------------------->
+		<div class="container" ng-init="myFunctionLoadData()">
+			<script src="/js/Scripts/controllers/QuanTriVienController.js"></script>
+			<div class="title">
+				<h4>Quản lý tài khoản và phân quyền</h4>
+			</div>
+			<div class="row">
+				<div class="add-item">
+					<a ng-click="myFunctionCreate()" class="btn btn-default" id="btn-add" role="button">Thêm tài khoản</a>
+				</div>
+				<div class="search">
+					<select ng-change="myFunctionLoadData(true)" ng-model="pageSize" name="" id="pageSize" class="text-inline-select">
+						<option value="5">5 rows</option>
+						<option value="10">10 rows</option>
+						<option value="20">20 rows</option>
+					</select>
+					<input ng-keyup="myFunctionLoadData(true)" ng-model="searchString" type="text" id="search" class="text-inline-input" placeholder="&#xF002; Nhập tên tài khoản...">
+				</div>
+				<div class="table-responsive" >
+					<table class="table table-hover table-bordered">
+						<thead>
+							<tr>
+								<th>Tên tài khoản</th>
+								<th>Tên nhân viên</th>
+								<th>Loại tài khoản</th>
+								<th>Quyền</th>
+								<th>Trạng thái tài khoản</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in items">
+								<td>{{item.TaiKhoan}}</td>
+								<td>{{item.TenQuanTriVien}}</td>
+								<td><img ng-src="/images/IconTaiKhoan/{{item.LoaiTaiKhoan[0].Icon}}" style="width:50px;height:50px;" /> </td>
+								<td>{{item.TenQuyen[0].TenQuyen}}</td>
+								<td><span class="{{item.TenTrangThai[0].Class}}">{{item.TenTrangThai[0].TenTrangThai}}</span></td>
+								<td>
+									<button ng-click="myFunctionUpdate(item._id)" type="button" class="fas fa-pen blue btn-update" title="Click để xem chi tiết và cập nhật thông tin"></button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!---------------------------------------POPUP SỬA ---------------------------------------->
+					<div id="account-update" class="modal fade" role="dialog">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<form id="frm-update">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Chi tiết tài khoản</h4>
+									</div>
+									<div class="modal-body">
+										<div class="row">
+											<div class="col-sm-6">
+												<h3>Thông tin nhân viên</h3>
+												<div class="form-group">
+													<label class="modal-label">Tên nhân viên :</label>
+													<input type="text" id="txtTen" name="txtTen" ng-model="SelectedItem[0].TenQuanTriVien" class="form-control modal-input" disabled>
+												</div>
+												<div class="form-group">
+													<label class="modal-label">Email :</label>
+													<input type="text" id="txtEmail" name="txtEmail" ng-model="SelectedItem[0].Email"  class="form-control modal-input" disabled>
+												</div>
+												<div class="form-group">
+													<label class="modal-label">Số điện thoại :</label>
+													<input type="text" id="txtSoDienThoai" name="txtSoDienThoai" ng-model="SelectedItem[0].SoDienThoai" class="form-control modal-input" disabled>
+												</div>
+												<div class="form-group">
+													<label class="modal-label">Địa chỉ :</label>
+													<input type="text" id="txtDiaChi" name="txtDiaChi" ng-model="SelectedItem[0].DiaChi"  class="form-control modal-input" disabled>
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<h3>Thông tin tài khoản</h3>
+												<div class="form-group">
+													<label class="modal-label">Tên tài khoản :</label>
+													<input type="text" ng-model="SelectedItem[0].TaiKhoan" class="form-control modal-input" disabled>
+												</div>
+												<div class="form-group">
+													<label class="modal-label">Mật khẩu :</label>
+													<input type="password" ng-model="SelectedItem[0].MatKhau" class="form-control modal-input" disabled>
+												</div>
+												<div class="form-group">
+													<label class="modal-label">Quyền :</label>
+													<select id="account-role" name="txtQuyen" ng-model="SelectedItem[0].IdQuyen" class="form-control modal-input">
+														<option ng-repeat="role in ListRole" value="{{role._id}}">{{role.TenQuyen}}</option>
+													</select>
+												</div>
+												<div class="form-group">
+													<label class="modal-label">Trạng thái tài khoản :</label>
+													<select ng-model="SelectedItem[0].IdTrangThai" name="txtTrangThai" id="account-status" class="form-control modal-input">
+														<option ng-repeat="option in Options" value="{{option._id}}">{{option.TenTrangThai}}</option>
+													</select>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-danger modal-btn" data-dismiss="modal">Đóng</button>
+										<button ng-click="myFunctionUpdateModel()" id="btn-update-account" type="submit" class="btn btn-success modal-btn">Lưu</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!---------------------------------------POPUP THÊM ---------------------------------------->
+					<div id="account-create" class="modal fade" role="dialog">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<form id="frm-create">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Tạo tài khoản mới</h4>
+									</div>
+									<div class="modal-body">
+										<div class="row" id="detail-content">
+											<div class="col-sm-6">
+												<h3>Thông tin nhân viên</h3>
+												<div class="form-group">
+													<label class="modal-label">Tên nhân viên :</label>
+													<input ng-model="ModelCreate[0].TenQuanTriVien" type="text" id="createTen" name="createTen" class="form-control modal-input">
+												</div>
+												<div class="form-group">
+													<label class="modal-label">Email :</label>
+													<input ng-model="ModelCreate[0].Email" type="text" id="createEmail" name="createEmail" class="form-control modal-input">
+												</div>
+												<div class="form-group">
+													<label class="modal-label">Số điện thoại :</label>
+													<input ng-model="ModelCreate[0].SoDienThoai" type="text" id="createSoDienThoai" name="createSoDienThoai" class="form-control modal-input">
+												</div>
+												<div class="form-group">
+													<label class="modal-label">Địa chỉ :</label>
+													<input ng-model="ModelCreate[0].DiaChi" type="text" id="createDiaChi" name="createDiaChi" class="form-control modal-input">
+												</div>
+
+											</div>
+											<div class="col-sm-6">
+												<h3>Thông tin tài khoản</h3>
+												<div class="form-group">
+													<label class="modal-label">Tên tài khoản :</label>
+													<input ng-model="ModelCreate[0].TaiKhoan" type="text" id="createTaiKhoan" name="createTaiKhoan" class="form-control modal-input">
+												</div>
+												<div class="form-group">
+													<label class="modal-label">Mật khẩu :</label>
+													<input ng-model="ModelCreate[0].MatKhau" type="password" id="createMatKhau" name="createMatKhau" class="form-control modal-input">
+												</div>
+												<div class="form-group">
+													<label class="modal-label">Nhập lại mật khẩu :</label>
+													<input ng-model="ModelCreate[0].retypeMatKhau" type="password" id="createReMatKhau" name="createReMatKhau" class="form-control modal-input">
+												</div>
+												<div class="form-group">
+													<label class="modal-label">Quyền :</label>
+													<select id="createQuyen" name="createQuyen" ng-model="ModelCreate[0].IdQuyen" class="form-control modal-input">
+														<option ng-repeat="role in ListRole" value="{{role._id}}">{{role.TenQuyen}}</option>
+													</select>
+												</div>
+												<div class="form-group">
+													<label class="modal-label">Trạng thái tài khoản :</label>
+													<select name="createTrangThai" id="createTrangThai" ng-model="ModelCreate[0].IdTrangThai" class="form-control modal-input">
+														<option ng-repeat="option in Options" value="{{option._id}}">{{option.TenTrangThai}}</option>
+													</select>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-danger modal-btn" data-dismiss="modal">Đóng</button>
+										<button ng-click="myFunctionCreateModel()" id="btn-create-account" type="submit" class="btn btn-success modal-btn">Tạo</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div id="pagination" style="text-align:center"></div>
+				</div>
+			<div class="footer">
+				<h5>&copy; BookStore Management. All right reserved.</h5>
+			</div>
+		</div>
+	</div>
+	<script src="/js/modal.js"></script>
+	<script src="/admin/js/bootstrap-notify.min.js"></script>
+	<script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+	<!-- Bootstrap JavaScript -->
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="/js/Scripts/plugin/mustache.min.js"></script>
+	<script src="/js/Scripts/plugin/jquery.twbsPagination.min.js"></script>
+	<script src="/js/Scripts/plugin/core.js"></script>
+	<script src="/js/Scripts/plugin/md5.js"></script>
+	
+</body>
+</html>

@@ -1,0 +1,430 @@
+﻿<!DOCTYPE html>
+<html lang="">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+	<title>BookStore Management</title>
+
+	<!-- Bootstrap CSS -->
+
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+		  crossorigin="anonymous">
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/admin/css/index.css">
+	<link rel="stylesheet" href="/admin/css/list.css">
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
+</head>
+
+<body>
+	<!--------------------------------------LAYOUT--------------------------------------------->
+	<div class="content" ng-app="loadSach" ng-controller="myCtrl">
+		<nav class="navbar navbar-default" role="navigation">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand fas fa-book header-title" >&nbsp;BookStore Management</a>
+
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse navbar-ex1-collapse" ng-init="myFunctionLoadAccessControl()">
+				<ul class="nav navbar-nav" style="color:black;">
+					<li id="box-user">
+						<div id="box-user-left">
+							<img id="img-admin" src="/admin/images/man.png">
+						</div>
+						<div id="box-user-right">
+							<b id="login-user"></b>
+							<p>{{name}}</p>
+						</div>
+					</li>
+					<li class="test" ng-repeat="accessControl in accessControls">
+						<a href="{{accessControl.Controller[0].location}}" class="{{accessControl.Controller[0].icon}}"> {{accessControl.Controller[0].caption}}</a> <!--@Url.Action(" Index","Home")-->
+					</li>
+					<li class="test" style="cursor:pointer">
+						<a id="logout" class="fas fa-sign-out-alt" ng-click="myFunctionLogOut()">&nbsp;Đăng xuất</a>
+					</li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</nav>
+		<!------------------------------------------BẢNG SÁCH------------------------------------------------->
+		<div class="container">
+			<script src="/js/Scripts/controllers/SachController.js"></script>
+			<div class="title">
+				<h4>Quản lý sách</h4>
+			</div>
+			<div class="row">
+				<div class="add-item">
+					<a ng-click="myFunctionCreate()" class="btn btn-default" id="btn-add" role="button">Thêm mới</a>
+				</div>
+				<div class="search">
+					<select ng-model="pageSize" ng-change="myFunctionLoadData(true)" name="" id="pageSize" class="text-inline-select">
+						<option value="5">5 rows</option>
+						<option value="10">10 rows</option>
+						<option value="20">20 rows</option>
+					</select>
+					<input ng-model="searchString" ng-keyup="myFunctionLoadData(true)" type="text" id="search" class="text-inline-input" placeholder="&#xF002; Nhập tên sách...">
+
+				</div>
+				<div class="table-responsive" ng-init="myFunctionLoadData()">
+					<table class="table table-hover table-bordered">
+						<thead>
+							<tr>
+								<th style="width:350px;">Tên sách</th>
+								<th>Hình ảnh</th>
+								<th style="width:150px;">Số lượng</th>
+								<th style="width:150px;">Giá</th>
+								<th>Trạng thái bán</th>
+								<th>Trạng thái đăng bài</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in items">
+								<td>{{item.TenSach}}</td>
+								<td><img ng-src="/images/HinhAnhSach/{{item.HinhAnh}}" style="width:50px;height:70px;" /> </td>
+								<td>{{item.SoLuong}}</td>
+								<td>{{item.Gia|number}}<sup>đ</sup></td>
+								<td><span class="{{item.TenTrangThai[0].Class}}">{{item.TenTrangThai[0].TenTrangThai}}</span></td>
+								<td><span class="{{item.TrangThaiChapNhan[0].Class}}">{{item.TrangThaiChapNhan[0].TenTrangThaiChapNhan}}</span></td>
+								<td>
+									<button ng-click="myFunctionUpdate(item._id)" type="button" class="fas fa-pen blue btn-update" title="Click để cập nhật"></button>
+									<button ng-click="myFunctionDetail(item._id)" type="button" class="fas fa-info green btn-detail" title="Click để xem chi tiết"></button>
+									<button ng-click="myFunctionDelete(item._id)" type="button" class="fas fa-trash red btn-delete" title="Click để xóa"></button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="pagination" style="text-align:center"></div>
+				<!----------------------------------------------POP UP THÊM------------------------------------------------->
+				<div class="modal fade modal-fullscreen" id="book-create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<form id="frm-create-book" enctype="multipart/form-data">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h4 class="modal-title" id="myModalLabel">Thêm mới sách</h4>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
+											<div class="form-group row detail-row">
+												<label class="col-sm-2 col-form-label detail-lbl" for="txtTitle">Tiêu đề :</label>
+												<div class="col-sm-10">
+													<input ng-model="ModelCreate[0].TenSach" type="text" value="" class="form-control modal-input" name="create-title" id="create-title">
+												</div>
+											</div>
+											<div class="form-group row detail-row">
+												<label class="col-sm-2 col-form-label detail-lbl" for="">Tóm tắt :</label>
+												<div class="col-sm-10">
+													<textarea ng-model="ModelCreate[0].TomTat" rows="4" cols="50" class="form-control" name="create-summary" id="create-summary" resize="none">{{ModelCreate[0].TomTat}}</textarea>
+												</div>
+											</div>
+											<div class="form-group row detail-row">
+												<label class="col-sm-2 col-form-label detail-lbl" for="">Danh mục :</label>
+												<div class="col-sm-10">
+													<select class="form-control" name="trangThai" id="sll-status" ng-model="ModelCreate[0].IdDanhMuc">
+														<option ng-repeat="danhMuc in danhMucs" value="{{danhMuc._id}}">{{danhMuc.TenDanhMuc}}</option>
+													</select>
+												</div>
+											</div>
+											<div class="form-group row detail-row">
+												<label class="col-sm-2 col-form-label detail-lbl" for="">Tác giả :</label>
+												<div class="col-sm-10">
+													<select class="form-control" name="trangThai" id="sll-status" ng-model="ModelCreate[0].IdTacGia">
+														<option ng-repeat="tacGia in tacGias" value="{{tacGia._id}}">{{tacGia.TenTacGia}}</option>
+													</select>
+												</div>
+											</div>
+											<div class="form-group row detail-row">
+												<label class="col-sm-2 col-form-label detail-lbl" for="">Nhà xuất bản :</label>
+												<div class="col-sm-10">
+													<select class="form-control" name="trangThai" id="sll-status" ng-model="ModelCreate[0].IdNXB">
+														<option ng-repeat="nhaXuatBan in nhaXuatBans" value="{{nhaXuatBan._id}}">{{nhaXuatBan.TenNhaXuatBan}}</option>
+													</select>
+												</div>
+											</div>
+											<div class="form-group row detail-row">
+												<label class="col-sm-2 col-form-label detail-lbl" for="">Tập :</label>
+												<div class="col-sm-10">
+													<input ng-model="ModelCreate[0].Tap" type="number" value="" min="1" class="form-control" name="create-part" id="create-part">
+												</div>
+											</div>
+											<div class="form-group row detail-row">
+												<label class="col-sm-2 col-form-label detail-lbl" for="">Giá bìa :</label>
+												<div class="col-sm-10">
+													<input ng-model="ModelCreate[0].Gia" type="number" min="0" class="form-control" name="create-price" id="create-price">
+												</div>
+											</div>
+
+											<div class="form-group row detail-row">
+												<label class="col-sm-2 col-form-label detail-lbl" for="">Trạng thái :</label>
+												<div class="col-sm-10">
+													<select ng-model="ModelCreate[0].IdTrangThai" class="form-control" name="create-status" id="create-status">
+														<option ng-repeat="trangThaiSach in trangThaiSachs" value="{{trangThaiSach._id}}">{{trangThaiSach.TenTrangThai}}</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-4" id="">
+											<img id="image-create" src="/images/HinhAnhSach/empty.jpg"
+												 style="cursor:pointer;width: 55%;height: 85%;padding: 0px;" /><br>
+											<button ng-click="myFunctionLoadFileCreate()" class="btn-choose" type="button" id="btn-choose-create">Chọn hình</button>
+											<input id="file-input-create" type="file" name="create-image" style="display:none;" accept="image/*" onchange="angular.element(this).scope().myFunctionLoadFileCreateChanged(this)" /><!--onchange="loadFileCreate(event)"-->
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger modal-btn" data-dismiss="modal">Đóng</button>
+									<button ng-click="myFunctionCreateModel()" type="submit" class="btn btn-success modal-btn">Tạo</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<!----------------------------------------------POP UP XEM------------------------------------------------->
+				<div class="modal fade modal-fullscreen" id="book-detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<form id="frm-detail-book" enctype="multipart/form-data">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h4 class="modal-title" id="myModalLabel">Chi tiết sách</h4>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
+											<div class="form-group row detail-row">
+												<label class="col-sm-2 col-form-label detail-lbl modal-label" for="txtTitle">Tiêu đề :</label>
+												<div class="col-sm-10">
+													<input ng-model="SelectedItem[0].TenSach" type="text" class="form-control  modal-input" name="detail-title" id="detail-title" disabled>
+												</div>
+											</div>
+											<div class="form-group row detail-row">
+												<label class="col-sm-2 col-form-label detail-lbl modal-label" for="txtTitle">Mã số sách :</label>
+												<div class="col-sm-4">
+													<input ng-model="SelectedItem[0].MaSoSach" type="text" class="form-control  modal-input" name="detail-title" id="detail-title" disabled>
+												</div>
+											</div>
+											<div class="form-group row detail-row">
+												<label class="col-sm-2 col-form-label detail-lbl modal-label" for="">Tóm tắt :</label>
+												<div class="col-sm-10">
+													<textarea ng-model="SelectedItem[0].TomTat" rows="4" cols="50" value="" class="form-control  modal-input" name="detail-summary" id="detail-summary" resize="none" disabled>{{SelectedItem[0].TomTat}}</textarea>
+												</div>
+											</div>
+											<div class="form-group row detail-row">
+												<label class="col-sm-2 col-form-label detail-lbl modal-label" for="">Danh mục :</label>
+												<div class="col-sm-10">
+													<input ng-model="SelectedItem[0].TenDanhMuc[0].TenDanhMuc" class="form-control  modal-input" name="detail-category" id="detail-category" type="text" disabled />
+												</div>
+											</div>
+											<div class="form-group row detail-row">
+												<label class="col-sm-2 col-form-label detail-lbl modal-label" for="">Tác giả :</label>
+												<div class="col-sm-10">
+													<input ng-model="SelectedItem[0].TenTacGia[0].TenTacGia" class="form-control  modal-input" name="detail-author" id="detail-author" type="text" disabled />
+												</div>
+											</div>
+											<div class="form-group row detail-row">
+												<label class="col-sm-2 col-form-label detail-lbl modal-label" for="">Nhà xuất bản :</label>
+												<div class="col-sm-10">
+													<input ng-model="SelectedItem[0].TenNhaXuatBan[0].TenNhaXuatBan" class="form-control  modal-input" name="detail-publisher" id="detail-publisher" type="text" disabled />
+												</div>
+											</div>
+											<div class="form-group row detail-row">
+												<label class="col-sm-2 col-form-label detail-lbl modal-label" for="">Tập :</label>
+												<div class="col-sm-3">
+													<input ng-model="SelectedItem[0].Tap" type="number" min="1" class="form-control  modal-input" name="detail-part" id="detail-part" disabled>
+												</div>
+												<label class="col-sm-2 col-form-label detail-lbl modal-label col-sm-offset-2" for="">Giá bìa :</label>
+												<div class="col-sm-3">
+													<label type="text" min="0" class="form-control  modal-input" name="detail-price" id="detail-price" disabled>{{SelectedItem[0].Gia|number}}<sup>đ</sup></label>
+												</div>
+											</div>
+											<div class="form-group row detail-row">
+												<label class="col-sm-2 col-form-label detail-lbl modal-label">Số lượng :</label>
+												<div class="col-sm-3">
+													<input ng-model="SelectedItem[0].SoLuong" type="number" min="0" class="form-control  modal-input" name="detail-quantity" id="detail-quantity" disabled>
+												</div>
+												<label class="col-sm-2 col-form-label detail-lbl modal-label col-sm-offset-2">Số lượt mua :</label>
+												<div class="col-sm-3">
+													<input ng-model="SelectedItem[0].SoLuotMua" type="number" min="0" class="form-control  modal-input" name="detail-quantity" id="detail-quantity" disabled>
+												</div>
+											</div>
+											<div class="form-group row detail-row">
+												<label class="col-sm-2 col-form-label detail-lbl modal-label" for="">Trạng thái :</label>
+												<div class="col-sm-10">
+													<select class="form-control  modal-input" name="create-status" id="create-status" disabled>
+														<option>{{SelectedItem[0].TenTrangThai[0].TenTrangThai}}</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-4" id="">
+											<img id="image-detail" ng-src="/images/HinhAnhSach/{{SelectedItem[0].HinhAnh}}"
+												 style="cursor:pointer;width: 55%;height: 85%;padding: 0px;" /><br>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger modal-btn" data-dismiss="modal">Đóng</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<!----------------------------------------------POP UP SỬA------------------------------------------------->
+				<div class="modal fade modal-fullscreen" id="book-update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<form id="frm-update-book" enctype="multipart/form-data">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h4 class="modal-title" id="myModalLabel">Cập nhật sách</h4>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
+											<div class="form-group row detail-row">
+												<label class="col-sm-2 col-form-label detail-lbl" for="txtTitle">Tiêu đề :</label>
+												<div class="col-sm-10">
+													<input ng-model="SelectedItem[0].TenSach" type="text" value="" class="form-control modal-input" name="update-title" id="update-title">
+												</div>
+											</div>
+											<div class="form-group row detail-row">
+												<label class="col-sm-2 col-form-label detail-lbl" for="">Tóm tắt :</label>
+												<div class="col-sm-10">
+													<textarea ng-model="SelectedItem[0].TomTat" rows="4" cols="50" class="form-control" name="update-summary" id="update-summary" resize="none">{{ModelCreate[0].TomTat}}</textarea>
+												</div>
+											</div>
+											<div class="form-group row detail-row">
+												<label class="col-sm-2 col-form-label detail-lbl" for="">Danh mục :</label>
+												<div class="col-sm-10">
+													<select class="form-control" name="trangThai" id="sll-status" ng-model="SelectedItem[0].IdDanhMuc">
+														<option ng-repeat="danhMuc in danhMucs" value="{{danhMuc._id}}">{{danhMuc.TenDanhMuc}}</option>
+													</select>
+												</div>
+											</div>
+											<div class="form-group row detail-row">
+												<label class="col-sm-2 col-form-label detail-lbl" for="">Tác giả :</label>
+												<div class="col-sm-10">
+													<select class="form-control" name="trangThai" id="sll-status" ng-model="SelectedItem[0].IdTacGia">
+														<option ng-repeat="tacGia in tacGias" value="{{tacGia._id}}">{{tacGia.TenTacGia}}</option>
+													</select>
+												</div>
+											</div>
+											<div class="form-group row detail-row">
+												<label class="col-sm-2 col-form-label detail-lbl" for="">Nhà xuất bản :</label>
+												<div class="col-sm-10">
+													<select class="form-control" name="trangThai" id="sll-status" ng-model="SelectedItem[0].IdNXB">
+														<option ng-repeat="nhaXuatBan in nhaXuatBans" value="{{nhaXuatBan._id}}">{{nhaXuatBan.TenNhaXuatBan}}</option>
+													</select>
+												</div>
+											</div>
+											<div class="form-group row detail-row">
+												<label class="col-sm-2 col-form-label detail-lbl" for="">Tập :</label>
+												<div class="col-sm-10">
+													<input ng-model="SelectedItem[0].Tap" type="number" value="" min="1" class="form-control" name="update-part" id="update-part">
+												</div>
+											</div>
+											<div class="form-group row detail-row">
+												<label class="col-sm-2 col-form-label detail-lbl" for="">Giá bìa :</label>
+												<div class="col-sm-10">
+													<input ng-model="SelectedItem[0].Gia" type="number" min="0" class="form-control" name="update-price" id="update-price">
+												</div>
+											</div>
+
+											<div class="form-group row detail-row">
+												<label class="col-sm-2 col-form-label detail-lbl" for="">Trạng thái :</label>
+												<div class="col-sm-10">
+													<select ng-model="SelectedItem[0].IdTrangThai" class="form-control" name="update-status" id="update-status">
+														<option ng-repeat="trangThaiSach in trangThaiSachs" value="{{trangThaiSach._id}}">{{trangThaiSach.TenTrangThai}}</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-4" id="">
+											<img id="image-update" ng-src="/images/HinhAnhSach/{{SelectedItem[0].HinhAnh}}"
+												 style="cursor:pointer;width: 55%;height: 85%;padding: 0px;" /><br>
+											<button ng-click="myFunctionLoadFileUpdate()" class="btn-choose" type="button" id="btn-choose-update">Chọn hình</button>
+											<input id="file-input-update" type="file" name="update-image" style="display:none;" accept="image/*" onchange="angular.element(this).scope().myFunctionLoadFileUpdateChanged(this)" /><!--onchange="loadFileCreate(event)"-->
+										</div>
+										<!--<script>
+								var loadFileCreate = function (event) {
+									var output = document.getElementById('image-create');
+									output.src = URL.createObjectURL(event.target.files[0]);
+								};
+							</script>-->
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger modal-btn" data-dismiss="modal">Đóng</button>
+									<button ng-click="myFunctionUpdateModel()" type="submit" class="btn btn-success modal-btn">Cập nhật</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<!----------------------------------------------POP UP XÓA------------------------------------------------->
+				<div id="modal-delete" class="modal fade" role="dialog">
+					<div class="modal-dialog modal-lg">
+						<!-- Modal content-->
+						<div class="modal-content" id="deleted">
+							<form>
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Xóa danh mục</h4>
+								</div>
+								<div class="modal-body">
+									<div>
+										<h4 style="text-align: center; text-transform: uppercase" class="alert-danger">Bạn có muốn xóa danh mục này không???</h4>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<div class="row">
+										<div class="col-xs-8"></div>
+										<div class="col-xs-2">
+											<button ng-click="myFunctionDeleteModel()" style="text-align: center;width:100%" id="btn-deleted modal-btn" type="button" class="btn btn-success">Có</button>
+										</div>
+										<div class="col-xs-2">
+											<button data-dismiss="modal" style="text-align: center;width:100%" type="button" class="btn btn-danger modal-btn">Không</button>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<h5>&copy; BookStore Management. All right reserved.</h5>
+		</div>
+	</div>
+
+	<script src="/js/modal.js"></script>
+	<script src="/admin/js/bootstrap-notify.min.js"></script>
+	<script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+	<!-- Bootstrap JavaScript -->
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="/js/Scripts/plugin/mustache.min.js"></script>
+	<script src="/js/Scripts/plugin/jquery.twbsPagination.min.js"></script>
+	<script src="/js/Scripts/plugin/core.js"></script>
+	<script src="/js/Scripts/plugin/md5.js"></script>
+	
+</body>
+</html>
+
+

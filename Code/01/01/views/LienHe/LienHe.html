@@ -1,0 +1,295 @@
+﻿<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, , initial-scale=1.0">
+	<title>Book Store</title>
+	<script>
+		if (navigator.userAgent.match(/Android/i)) {
+			var viewport = document.querySelector("meta[name=viewport]");
+		}
+		if (navigator.userAgent.match(/Android/i)) {
+			window.scrollTo(0, 1);
+		}
+	</script>
+
+	<link href="/user/stylesheet/bootstrap.css" rel="stylesheet" />
+	<link href="/user/stylesheet/cloud-zoom.css" rel="stylesheet" />
+	<link href="/user/stylesheet/stylesheet.css" rel="stylesheet" />
+	<link href="/user/stylesheet/font-awesome.css" rel="stylesheet" />
+	<link href="/user/stylesheet/slideshow.css" rel="stylesheet" />
+	<link href="/user/stylesheet/jquery.prettyPhoto.css" rel="stylesheet" />
+	<link href="/user/stylesheet/camera.css" rel="stylesheet" />
+	<link href="/user/stylesheet/superfish.css" rel="stylesheet" />
+	<link href="/user/stylesheet/photoswipe.css" rel="stylesheet" />
+	<link href="/user/stylesheet/jquery.bxslider.css" rel="stylesheet" />
+	<link href="/user/stylesheet/colorbox.css" rel="stylesheet" />
+	<link href="/user/stylesheet/responsive.css" rel="stylesheet" />
+	<link href="/user/stylesheet/custom.css" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+		  crossorigin="anonymous">
+
+
+	<script type="text/javascript" src="/user/js/jquery/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="/user/js/jquery/jquery-migrate-1.2.1.min.js"></script>
+	<script type="text/javascript" src="/user/jquery/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="/user/jquery/ui/jquery-ui-1.8.16.custom.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/user/jquery/ui/themes/ui-lightness/jquery-ui-1.8.16.custom.css" />
+	<script type="text/javascript" src="/user/jquery/ui/external/jquery.cookie.js"></script>
+	<script type="text/javascript" src="/user/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+	<link rel="stylesheet" type="text/css" href="/user/js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+	<script type="text/javascript" src="/user/js/colorbox/jquery.colorbox.js"></script>
+	<script type="text/javascript" src="/user/jquery/jquery.jcarousel.min.js"></script>
+	<script type="text/javascript" src="/user/jquery/jquery.cycle.js"></script>
+
+	<script type="text/javascript" src="/user/js/bootstrap/bootstrap.js"></script>
+	<script type="text/javascript" src="/user/jquery/tabs.js"></script>
+
+	<script type="text/javascript" src="/user/js/jQuery.equalHeights.js"></script>
+	<script type="text/JavaScript" src="/user/js/elevate/jquery.elevatezoom.js"></script>
+	<script type="text/javascript" src="/user/js/jquery.prettyPhoto.js"></script>
+	<script type="text/javascript" src="/user/js/jscript_zjquery.anythingslider.js"></script>
+	<script type="text/javascript" src="/user/jquery/nivo-slider/jquery.nivo.slider.pack.js"></script>
+	<script type="text/javascript" src="/user/js/jquery.mobile-events.js"></script>
+	<script type="text/javascript" src="/user/js/superfish.js"></script>
+	<script type="text/javascript" src="/user/js/script.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
+	<script type="text/javascript" language="javascript" src="/user/js/bxslider/jquery.bxslider.js"></script>
+	<link rel="stylesheet" type="text/css" href="/user/stylesheet/livesearch.css" />
+	<script src="/js/Scripts/controllers/HomeController.js"></script>
+
+
+</head>
+
+<body class="common-home" ng-app="loadHome" ng-controller="myCtrl" ng-init="myFunctionLoadData()">
+	<div class="swipe-left"></div>
+	<div id="body">
+		<div class="swipe">
+			<div class="swipe-menu">
+				<ul class="links">
+					<li class="first"><a class="active" href="/"><i class="fa fa-home"></i> Trang chủ</a></li>
+					<li id="li-login-status">
+					</li>
+					<li ng-repeat="HomeControl in HomeControls"><a style="font-size:14px" ng-href="{{HomeControl.href}}"><i class="{{HomeControl.icon}}"></i>{{HomeControl.control}}</a></li>
+					<li><a style="font-size:14px" href="/LienHe"><i class="fas fa-phone-square"></i> Liên hệ</a></li>
+					<li ng-click="myFunctionLogin()" class="li-login"><a class="login"><i class="fa fa-sign-in-alt"></i> {{LoginOrLogouts}}</a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="page">
+			<div id="shadow">
+				<div class="shadow"></div>
+				<header id="header" style="background-image: url('../../../user/image/background/2.jpg');background-size: 100%;">
+					<div class="top-line" style="background-image: url('../../../user/image/background/2.jpg');background-size: 100%;">
+						<div class="container">
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="toprow">
+										<ul class="links">
+											<li class="first">
+												<a class="active" style="font-size:14px" href="/"><i class="fas fa-home"></i> TRANG CHỦ</a>
+											</li>
+											<li ng-repeat="HomeControl in HomeControls"><a style="font-size:14px" ng-href="{{HomeControl.href}}"><i class="{{HomeControl.icon}}"></i>{{HomeControl.control}}</a></li>
+											<li><a style="font-size:14px" href="/LienHe"><i class="fas fa-phone-square"></i> Liên hệ</a></li>
+											<!--<li><a style="font-size:14px" href="/TinTuc"><i class="fas fa-newspaper"></i> Tin tức</a></li>-->
+										</ul>
+										<div class="clear"></div>
+									</div>
+									<div style="float:right" class="toprow">
+										<ul style="float:right" class="links">
+											<li class="btn btn-home-login " style="border: 2px solid white; border-radius: 0.8rem;" ng-click="myFunctionLogin()"><a class="active" style="font-size:14px; padding-left: inherit;">{{LoginOrLogouts}}</a></li>
+										</ul>
+										<div class="clear"></div>
+									</div>
+									<div class="cart-position">
+										<div class="cart-inner">
+											<div id="cart">
+												<div class="heading">
+													<span class="link_a" ng-click="myFunctionMyCart()">
+														<i class="fa fa-shopping-cart mycart"></i>
+														<b class="mycart">Giỏ hàng:</b>
+														<span class="mycart" id="cart-total2">0</span>
+														<span class="mycart" id="cart-total">0 sách</span>
+														<span class="clear"></span>
+													</span>
+												</div>
+												<div ng-repeat="HelloUser in HelloUsers" class="toprow">
+													<h3>Xin chào: <span style="color: orangered">{{HelloUser.TenQuanTriVien}}</span></h3>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="top_color" style="background-image: url('../../../user/image/background/2.jpg');background-size: 100%;">
+						<div class="container">
+							<div class="row">
+								<div class="col-sm-12">
+									<div id="logo" ng-click="myFunctionReloadPage()">
+										<a style="text-transform: uppercase; font-size: 120px;">
+											<h1 style="font-size: 40px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
+												Book<b style="color: brown;">Store</b>
+											</h1>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="container">
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="toprow-1">
+										<a class="swipe-control"><i class="fa fa-align-justify"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</header>
+				<section>
+					<div id="container" class="container">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="col-sm-6">
+									<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2398.2119100688005!2d106.77219900862838!3d10.851458601900129!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175270ac7eca1a9%3A0x4acd9831a3137ca1!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBTxrAgcGjhuqFtIEvhu7kgdGh14bqtdA!5e0!3m2!1svi!2sus!4v1575652982695!5m2!1svi!2sus"
+											frameborder="0" style="border:0;width: 100%; height: 450px;" allowfullscreen=""></iframe>
+								</div>
+
+								<div class="form-group col-sm-6" style="text-align:center; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; padding-top: 150px;">
+									<div id="logo" ng-click="myFunctionReloadPage()">
+										<a style="text-transform: uppercase; font-size: 120px;">
+											<h1 style="font-size: 40px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
+												Book<b style="color: brown;">Store</b>
+											</h1>
+										</a>
+									</div>
+									<div>
+										<h3>Địa chỉ: 1 Võ Văn Ngân, Linh Chiểu, Thủ Đức, Hồ Chí Minh</h3>
+									</div>
+									<div>
+										<h3>Email: quangnguyenky123@gmail.com</h3>
+									</div>
+									<div>
+										<h3>Số điện thoại: 0374908941</h3>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<!----------------------------------POP UP GIO HANG-------------------------------------------->
+					<div id="cart-modal" class="modal fade" role="dialog">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Giỏ hàng của bạn</h4>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<div id="all-item" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<table id="cart-content" class="table" style="color:black">
+												<thead>
+													<tr>
+														<th>Tên sách</th>
+														<th>Số lượng</th>
+														<th>Đơn giá</th>
+														<th></th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr ng-repeat="item in listItem">
+														<td>{{item.title}}</td>
+														<td>
+															<input ng-model="item.quantity" ng-mouseup="myFunctionQuantity(item.id)" style="max-width:55px;color:black;padding-right:0px;" type="number" min="1" class="form-control txt-quantity" step="1" onkeydown="return false">
+														<td>{{item.price|number}}&nbsp;<sup>đ</sup></td>
+														<td><button ng-click="myFunctionDeleteItemInCart(item.id)" class="btn btn-danger delete-cart-item"><span class="fas fa-times"></span></button></td>
+													</tr>
+												</tbody>
+											</table>
+											<hr />
+											<div id="price-cart" style="float:right;color:black;font-size:20px;">
+												<span>Tổng tiền :&nbsp;<b id="total-price">0&nbsp;<u>đ</u></b></span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger modal-btn" data-dismiss="modal">Tiếp tục mua sách</button>
+									<button id="btn-pay" ng-click="myFunctionBuy()" type="button" class="btn btn-success modal-btn">Thanh toán</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<footer>
+					<div class="footer-top">
+						<div class="container">
+							<!--<div class="row">
+								<div class="col-sm-3">
+									<h3>Thông tin</h3>
+									<ul>
+										<li><a href="#">Giúp đỡ</a></li>
+										<li><a href="#">Chính sách</a></li>
+										<li><a href="#">Nội quy thư viện</a></li>
+									</ul>
+								</div>
+								<div class="col-sm-3">
+									<h3>Dịch vụ</h3>
+									<ul>
+										<li><a href="#">Sách yêu thích nhất</a></li>
+										<li><a href="#">Sách mới về</a></li>
+										<li><a href="#"></a></li>
+									</ul>
+								</div>
+								<div class="col-sm-3">
+									<h3>Liên hệ</h3>
+									<ul>
+										<li><a href="#">Admin : admin@gmail.com.vn</a></li>
+										<li><a href="#">Hotline : 09887665454</a></li>
+									</ul>
+								</div>
+								<div class="col-sm-3">
+									<h3>Tài khoản</h3>
+									<ul>
+										<li><a href="#">Thông tin cá nhân</a></li>
+										<li><a href="#">Lịch sử mượn sách</a></li>
+										<li><a href="#">Danh sách yêu thích</a></li>
+									</ul>
+								</div>
+							</div>-->
+						</div>
+					</div>
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-12">
+								<div id="powered">
+									<span>©  BookStore Management. All right reserved.<br /></span>
+									<div class="clear"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</footer>
+			</div>
+		</div>
+	</div>
+
+
+
+	<script src="/user/js/bootstrap-notify.min.js"></script>
+	<!--<script src="/user/js/History.js"></script>-->
+	<script src="/js/Scripts/plugin/mustache.min.js"></script>
+	<script src="/js/Scripts/plugin/jquery.twbsPagination.min.js"></script>
+	<script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="/js/bootstrap-confirmation.js"></script>
+
+</body>
+
+</html>
+

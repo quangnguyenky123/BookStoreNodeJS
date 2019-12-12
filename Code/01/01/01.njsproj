@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <Name>01</Name>
+    <RootNamespace>01</RootNamespace>
+    <SaveNodeJsSettingsInProjectFile>True</SaveNodeJsSettingsInProjectFile>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>05d4cc14-8693-45b7-a909-381cb6c3c73c</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>app.js</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <NodejsPort>1337</NodejsPort>
+    <StartWebBrowser>True</StartWebBrowser>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include=".env" />
+    <Content Include="app.js" />
+    <Content Include="models\TrangThaiChapNhan.js" />
+    <Content Include="models\LoaiTaiKhoan.js" />
+    <Content Include="models\AccessControl.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="models\ChiTietDonDatHang.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="models\ChiTietPhieuNhapSach.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="models\Controller.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="models\DanhMuc.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="models\DonDatHang.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="models\KhachHang.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="models\NhaXuatBan.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="models\PhieuNhapSach.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="models\QuanTriVien.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="models\Quyen.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="models\Sach.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="models\TacGia.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="models\TrangThaiGiaoHang.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="models\TrangThaiSach.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="models\TrangThaiSuDung.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="public\admin\css\404.css" />
+    <Content Include="public\admin\css\add-book.css" />
+    <Content Include="public\admin\css\bootstrap-switch.less" />
+    <Content Include="public\admin\css\bootstrap.css" />
+    <Content Include="public\admin\css\bootstrap.min.css" />
+    <Content Include="public\admin\css\client.css" />
+    <Content Include="public\admin\css\index.css" />
+    <Content Include="public\admin\css\list.css" />
+    <Content Include="public\admin\css\login.css" />
+    <Content Include="public\admin\css\superfish.css" />
+    <Content Include="public\admin\images\bg-top-footer.gif" />
+    <Content Include="public\admin\images\home.png" />
+    <Content Include="public\admin\images\icons8-minus-32.png" />
+    <Content Include="public\admin\images\icons8-plus-32.png" />
+    <Content Include="public\admin\images\man.png" />
+    <Content Include="public\admin\images\Nen.jpg" />
+    <Content Include="public\admin\images\paypal-bg.jpg" />
+    <Content Include="public\admin\js\addBookController.js" />
+    <Content Include="public\admin\js\additional-methods.js" />
+    <Content Include="public\admin\js\additional-methods.min.js" />
+    <Content Include="public\admin\js\book-detail.js" />
+    <Content Include="public\admin\js\bootstrap-notify.min.js" />
+    <Content Include="public\admin\js\bootstrap-switch.js" />
+    <Content Include="public\admin\js\jquery.validate.min.js" />
+    <Content Include="public\admin\js\login.js" />
+    <Content Include="public\css\all.css" />
+    <Content Include="public\css\bootstrap.min.css" />
+    <Content Include="public\css\site.css" />
+    <Content Include="public\css\site.min.css" />
+    <Content Include="public\images\banner1.svg" />
+    <Content Include="public\images\banner2.svg" />
+    <Content Include="public\images\banner3.svg" />
+    <Content Include="public\images\cart-empty.png" />
+    <Content Include="public\images\HinhAnhSach\36_14_chuoc_thuyet_phuc_outline_28.3.2018-01.jpg" />
+    <Content Include="public\images\HinhAnhSach\8934974136088.jpg" />
+    <Content Include="public\images\HinhAnhSach\8934974144519-2.jpg" />
+    <Content Include="public\images\HinhAnhSach\8934974152262.jpg" />
+    <Content Include="public\images\HinhAnhSach\8935086844199.jpg" />
+    <Content Include="public\images\HinhAnhSach\8935212330411.jpg" />
+    <Content Include="public\images\HinhAnhSach\8935235213746.jpg" />
+    <Content Include="public\images\HinhAnhSach\8935251400335.jpg" />
+    <Content Include="public\images\HinhAnhSach\8936066684996.jpg" />
+    <Content Include="public\images\HinhAnhSach\8936066685030_1.jpg" />
+    <Content Include="public\images\HinhAnhSach\8936066685122.jpg" />
+    <Content Include="public\images\HinhAnhSach\8936117740695.jpg" />
+    <Content Include="public\images\HinhAnhSach\9786045522714.jpg" />
+    <Content Include="public\images\HinhAnhSach\9786045640456.jpg" />
+    <Content Include="public\images\HinhAnhSach\9786047737819.jpg" />
+    <Content Include="public\images\HinhAnhSach\9786048029753.jpg" />
+    <Content Include="public\images\HinhAnhSach\9_22.jpg" />
+    <Content Include="public\images\HinhAnhSach\bia_mai_mai_la_bao_xa_tb_5-2018_master.jpg" />
+    <Content Include="public\images\HinhAnhSach\chuyen-nha-dr-thanh.jpg" />
+    <Content Include="public\images\HinhAnhSach\cover-lagom-b_a-1.jpg" />
+    <Content Include="public\images\HinhAnhSach\download.jfif" />
+    <Content Include="public\images\HinhAnhSach\empty.jpg" />
+    <Content Include="public\images\HinhAnhSach\ho-do.jpg" />
+    <Content Include="public\images\HinhAnhSach\image_115773.jpg" />
+    <Content Include="public\images\HinhAnhSach\image_116793.jpg" />
+    <Content Include="public\images\HinhAnhSach\image_146618.jpg" />
+    <Content Include="public\images\HinhAnhSach\image_179023.jpg" />
+    <Content Include="public\images\HinhAnhSach\image_179062.jpg" />
+    <Content Include="public\images\HinhAnhSach\image_56325.jpg" />
+    <Content Include="public\images\HinhAnhSach\image_81.png" />
+    <Content Include="public\images\HinhAnhSach\LaNamTrongLa1.jpg" />
+    <Content Include="public\images\HinhAnhSach\nguoncoi.jpg" />
+    <Content Include="public\images\HinhAnhSach\NguonCoi1.jpg" />
+    <Content Include="public\images\HinhAnhSach\NguonCoi2.jpg" />
+    <Content Include="public\images\HinhAnhSach\nhung_khoang_lang_cuoc_song_tai_ban_2016_2_2018_07_06_14_19_55.jpg" />
+    <Content Include="public\images\HinhAnhSach\riu_dan_cuc_-_b_a_1.jpg" />
+    <Content Include="public\images\HinhAnhSach\tieng-thoi-gian-du-duong-bia.jpg" />
+    <Content Include="public\images\HinhAnhSach\trenduongbang.jpg" />
+    <Content Include="public\images\HinhAnhSach\TriThongMinhCamXucForDummies.jpg" />
+    <Content Include="public\images\HinhAnhSach\untitled_3_10.png" />
+    <Content Include="public\images\HinhAnhSach\untitled_3_8.png" />
+    <Content Include="public\images\HinhAnhSach\yeu-nhu-mot-cai-cay-b.jpg" />
+    <Content Include="public\images\IconTaiKhoan\fb.png" />
+    <Content Include="public\images\IconTaiKhoan\gg.png" />
+    <Content Include="public\images\IconTaiKhoan\user.png" />
+    <Content Include="public\js\bootstrap-confirmation.js" />
+    <Content Include="public\js\bootstrap.min.js" />
+    <Content Include="public\js\font-awesome.min.css" />
+    <Content Include="public\js\jquery-3.3.1.min.js" />
+    <Content Include="public\js\jquery.min.js" />
+    <Content Include="public\js\jquery.validate.min.js" />
+    <Content Include="public\js\modal.js" />
+    <Content Include="public\js\Scripts\controllers\DangKyController.js" />
+    <Content Include="public\js\Scripts\controllers\DatHangController.js" />
+    <Content Include="public\js\Scripts\controllers\ThongTinCaNhanController.js" />
+    <Content Include="public\js\Scripts\controllers\DanhMucController.js" />
+    <Content Include="public\js\Scripts\controllers\DonDatHangController.js" />
+    <Content Include="public\js\Scripts\controllers\HomeController.js" />
+    <Content Include="public\js\Scripts\controllers\LoginController.js" />
+    <Content Include="public\js\Scripts\controllers\NXBController.js" />
+    <Content Include="public\js\Scripts\controllers\PhieuNhapSach.js" />
+    <Content Include="public\js\Scripts\controllers\PheDuyetSachController.js" />
+    <Content Include="public\js\Scripts\controllers\SachController.js" />
+    <Content Include="public\js\Scripts\controllers\TacGiaController.js" />
+    <Content Include="public\js\Scripts\controllers\QuanTriVienController.js" />
+    <Content Include="public\js\Scripts\plugin\core.js" />
+    <Content Include="public\js\Scripts\plugin\jquery.twbsPagination.min.js" />
+    <Content Include="public\js\Scripts\plugin\md5.js" />
+    <Content Include="public\js\Scripts\plugin\mustache.min.js" />
+    <Content Include="public\js\site.js" />
+    <Content Include="public\js\site.min.js" />
+    <Content Include="public\lib\bootstrap\.bower.json" />
+    <Content Include="public\lib\bootstrap\dist\css\bootstrap-theme.css" />
+    <Content Include="public\lib\bootstrap\dist\css\bootstrap-theme.css.map" />
+    <Content Include="public\lib\bootstrap\dist\css\bootstrap-theme.min.css" />
+    <Content Include="public\lib\bootstrap\dist\css\bootstrap-theme.min.css.map" />
+    <Content Include="public\lib\bootstrap\dist\css\bootstrap.css" />
+    <Content Include="public\lib\bootstrap\dist\css\bootstrap.css.map" />
+    <Content Include="public\lib\bootstrap\dist\css\bootstrap.min.css" />
+    <Content Include="public\lib\bootstrap\dist\css\bootstrap.min.css.map" />
+    <Content Include="public\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="public\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="public\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="public\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="public\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="public\lib\bootstrap\dist\js\bootstrap.js" />
+    <Content Include="public\lib\bootstrap\dist\js\bootstrap.min.js" />
+    <Content Include="public\lib\bootstrap\dist\js\npm.js" />
+    <Content Include="public\lib\bootstrap\LICENSE" />
+    <Content Include="public\lib\jquery-validation-unobtrusive\.bower.json" />
+    <Content Include="public\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
+    <Content Include="public\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
+    <Content Include="public\lib\jquery-validation-unobtrusive\LICENSE.txt" />
+    <Content Include="public\lib\jquery-validation\.bower.json" />
+    <Content Include="public\lib\jquery-validation\dist\additional-methods.js" />
+    <Content Include="public\lib\jquery-validation\dist\additional-methods.min.js" />
+    <Content Include="public\lib\jquery-validation\dist\jquery.validate.js" />
+    <Content Include="public\lib\jquery-validation\dist\jquery.validate.min.js" />
+    <Content Include="public\lib\jquery-validation\LICENSE.md" />
+    <Content Include="public\lib\jquery\.bower.json" />
+    <Content Include="public\lib\jquery\dist\jquery.js" />
+    <Content Include="public\lib\jquery\dist\jquery.min.js" />
+    <Content Include="public\lib\jquery\dist\jquery.min.map" />
+    <Content Include="public\lib\jquery\LICENSE.txt" />
+    <Content Include="public\user\fonts\fontawesome-webfont.woff" />
+    <Content Include="public\user\image\arr-menu.png" />
+    <Content Include="public\user\image\background\1.jpg" />
+    <Content Include="public\user\image\background\10.jpg" />
+    <Content Include="public\user\image\background\11.jpg" />
+    <Content Include="public\user\image\background\2.jpg" />
+    <Content Include="public\user\image\background\3.jpg" />
+    <Content Include="public\user\image\background\4.jpg" />
+    <Content Include="public\user\image\background\5.jpg" />
+    <Content Include="public\user\image\background\6.jpg" />
+    <Content Include="public\user\image\background\7.jpg" />
+    <Content Include="public\user\image\background\8.jpg" />
+    <Content Include="public\user\image\background\9.jpg" />
+    <Content Include="public\user\image\bg-top-footer.gif" />
+    <Content Include="public\user\image\bg.gif" />
+    <Content Include="public\user\image\cache\data\20000 Leagues Under the Sea by Jules Verne 1 copy-131x199.png" />
+    <Content Include="public\user\image\cache\data\20000 Leagues Under the Sea by Jules Verne 1 copy-270x270.png" />
+    <Content Include="public\user\image\cache\data\Alices Adventures in Wonderland and Other Stories by Lewis Carroll 1 copy-131x199.png" />
+    <Content Include="public\user\image\cache\data\Alices Adventures in Wonderland and Other Stories by Lewis Carroll 1 copy-270x270.png" />
+    <Content Include="public\user\image\cache\data\Christopher Paolini Inheritance Cycle - Brisingr 1 copy-131x199.png" />
+    <Content Include="public\user\image\cache\data\Christopher Paolini Inheritance Cycle - Brisingr 1 copy-270x270.png" />
+    <Content Include="public\user\image\cache\data\Five Novels by Charles Dickens 1 copy-131x199.png" />
+    <Content Include="public\user\image\cache\data\Five Novels by Charles Dickens 1 copy-270x270.png" />
+    <Content Include="public\user\image\cache\data\Grimms Complete Fairy Tales 1 copy-131x199.png" />
+    <Content Include="public\user\image\cache\data\Grimms Complete Fairy Tales 1 copy-270x270.png" />
+    <Content Include="public\user\image\cache\data\Holy Bible English Standard Version 1 copy-131x199.png" />
+    <Content Include="public\user\image\cache\data\Holy Bible English Standard Version 1 copy-270x270.png" />
+    <Content Include="public\user\image\cache\data\Outliers by Malcolm Gladwell 1 copy-131x199.png" />
+    <Content Include="public\user\image\cache\data\Outliers by Malcolm Gladwell 1 copy-270x270.png" />
+    <Content Include="public\user\image\cache\data\Seven Novels by Jane Austen 1 copy-131x199.png" />
+    <Content Include="public\user\image\cache\data\Seven Novels by Jane Austen 1 copy-270x270.png" />
+    <Content Include="public\user\image\cache\data\Seven Novels by Jules Verne 1 copy-131x199.png" />
+    <Content Include="public\user\image\cache\data\Seven Novels by Jules Verne 1 copy-270x270.png" />
+    <Content Include="public\user\image\cache\data\The Chronicles of Narnia 1 copy-131x199.png" />
+    <Content Include="public\user\image\cache\data\The Chronicles of Narnia 1 copy-270x270.png" />
+    <Content Include="public\user\image\cache\data\The Circle Series by Ted Dekker - Green 1 copy-131x199.png" />
+    <Content Include="public\user\image\cache\data\The Circle Series by Ted Dekker - Green 1 copy-270x270.png" />
+    <Content Include="public\user\image\cache\data\The Complete Sherlock Holmes by Arthur Conan Doyle 1 copy-131x199.png" />
+    <Content Include="public\user\image\cache\data\The Complete Sherlock Holmes by Arthur Conan Doyle 1 copy-270x270.png" />
+    <Content Include="public\user\image\cache\data\The Complete Works of William Shakespeare 1 copy-131x199.png" />
+    <Content Include="public\user\image\cache\data\The Complete Works of William Shakespeare 1 copy-270x270.png" />
+    <Content Include="public\user\image\cache\data\The Divine Comedy by Dante 1 copy-131x199.png" />
+    <Content Include="public\user\image\cache\data\The Divine Comedy by Dante 1 copy-270x270.png" />
+    <Content Include="public\user\image\cache\data\The ESV Study Bible Hardcover 1 copy-131x199.png" />
+    <Content Include="public\user\image\cache\data\The ESV Study Bible Hardcover 1 copy-270x270.png" />
+    <Content Include="public\user\image\cache\data\The MacArthur Study Bible 1 copy-131x199.png" />
+    <Content Include="public\user\image\cache\data\The MacArthur Study Bible 1 copy-270x270.png" />
+    <Content Include="public\user\image\cache\data\The Mayors Tongue by Nathaniel Rich 1 copy-131x199.png" />
+    <Content Include="public\user\image\cache\data\The Mayors Tongue by Nathaniel Rich 1 copy-270x270.png" />
+    <Content Include="public\user\image\cache\data\The Naked Pint by Christina Perozzi &amp; Hallie Beaune 1 copy-131x199.png" />
+    <Content Include="public\user\image\cache\data\The Naked Pint by Christina Perozzi &amp; Hallie Beaune 1 copy-270x270.png" />
+    <Content Include="public\user\image\data\favicon.png" />
+    <Content Include="public\user\image\data\HomeBackground.jpg" />
+    <Content Include="public\user\image\data\logo.png" />
+    <Content Include="public\user\image\data\UltraVoilet.jpg" />
+    <Content Include="public\user\image\overlay.png" />
+    <Content Include="public\user\image\paypal-bg.jpg" />
+    <Content Include="public\user\image\stars-0.png" />
+    <Content Include="public\user\image\sticker_new_en.png" />
+    <Content Include="public\user\image\sticker_sale_en.png" />
+    <Content Include="public\user\image\sticker_top_en.png" />
+    <Content Include="public\user\jquery\jquery-1.7.1.min.js" />
+    <Content Include="public\user\jquery\jquery-ui.min.css" />
+    <Content Include="public\user\jquery\jquery-ui.min.js" />
+    <Content Include="public\user\jquery\jquery.cycle.js" />
+    <Content Include="public\user\jquery\jquery.jcarousel.min.js" />
+    <Content Include="public\user\jquery\jquery.mycart.min.js" />
+    <Content Include="public\user\jquery\nivo-slider\jquery.nivo.slider.pack.js" />
+    <Content Include="public\user\jquery\tabs.js" />
+    <Content Include="public\user\jquery\ui\external\jquery.cookie.js" />
+    <Content Include="public\user\jquery\ui\jquery-ui-1.8.16.custom.min.js" />
+    <Content Include="public\user\jquery\ui\themes\ui-lightness\jquery-ui-1.8.16.custom.css" />
+    <Content Include="public\user\js\bootstrap-notify.min.js" />
+    <Content Include="public\user\js\bootstrap\bootstrap.js" />
+    <Content Include="public\user\js\bxslider\jquery.bxslider.js" />
+    <Content Include="public\user\js\colorbox\jquery.colorbox.js" />
+    <Content Include="public\user\js\common.js" />
+    <Content Include="public\user\js\elevate\jquery.elevatezoom.js" />
+    <Content Include="public\user\js\fancybox\jquery.fancybox-1.3.4.css" />
+    <Content Include="public\user\js\fancybox\jquery.fancybox-1.3.4.pack.js" />
+    <Content Include="public\user\js\History.js" />
+    <Content Include="public\user\js\jQuery.equalHeights.js" />
+    <Content Include="public\user\js\jquery.mobile-events.js" />
+    <Content Include="public\user\js\jquery.prettyPhoto.js" />
+    <Content Include="public\user\js\jquery\jquery-1.10.2.min.js" />
+    <Content Include="public\user\js\jquery\jquery-migrate-1.2.1.min.js" />
+    <Content Include="public\user\js\jscript_zjquery.anythingslider.js" />
+    <Content Include="public\user\js\livesearch.js" />
+    <Content Include="public\user\js\photo-swipe\code.photoswipe.jquery-3.0.5.js" />
+    <Content Include="public\user\js\photo-swipe\klass.min.js" />
+    <Content Include="public\user\js\script.js" />
+    <Content Include="public\user\js\sl\camera.js" />
+    <Content Include="public\user\js\superfish.js" />
+    <Content Include="public\user\stylesheet\bootstrap.css" />
+    <Content Include="public\user\stylesheet\camera.css" />
+    <Content Include="public\user\stylesheet\cloud-zoom.css" />
+    <Content Include="public\user\stylesheet\colorbox.css" />
+    <Content Include="public\user\stylesheet\custom.css" />
+    <Content Include="public\user\stylesheet\font-awesome.css" />
+    <Content Include="public\user\stylesheet\jquery.bxslider.css" />
+    <Content Include="public\user\stylesheet\jquery.prettyPhoto.css" />
+    <Content Include="public\user\stylesheet\livesearch.css" />
+    <Content Include="public\user\stylesheet\photoswipe.css" />
+    <Content Include="public\user\stylesheet\responsive.css" />
+    <Content Include="public\user\stylesheet\slideshow.css" />
+    <Content Include="public\user\stylesheet\stylesheet.css" />
+    <Content Include="public\user\stylesheet\superfish.css" />
+    <Content Include="routes\admin\DatHang.js" />
+    <Content Include="routes\admin\PhieuNhapSach.js" />
+    <Content Include="routes\admin\DanhMuc.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\admin\DonDatHang.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\admin\Login.js">
+      <SubType>Code</SubType>
+      <TestFramework>ExportRunner</TestFramework>
+    </Content>
+    <Content Include="routes\admin\NhaXuatBan.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\admin\ThongTinCaNhan.js" />
+    <Content Include="routes\admin\QuanTriVien.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\admin\PheDuyetSach.js" />
+    <Content Include="routes\admin\Sach.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\admin\TacGia.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\users.js" />
+    <Content Include="package.json" />
+    <Content Include="public\stylesheets\main.css" />
+    <Content Include="README.md" />
+    <Content Include="routes\user\DangKy.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\user\Home.js" />
+    <Content Include="routes\user\LienHe.js" />
+    <Content Include="views\DangKy\DangKy.html" />
+    <Content Include="views\DatHang\DatHang.html" />
+    <Content Include="views\DonDatHang\DonDatHang.html" />
+    <Content Include="views\LienHe\LienHe.html" />
+    <Content Include="views\QuanLyDanhMuc\QuanLyDanhMuc.html">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\Home\Home.html">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\index.pug" />
+    <Content Include="views\layout.pug" />
+    <Content Include="views\error.pug" />
+    <Content Include="views\Layout\_Admin.html">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\Layout\_User.html">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\Login\Login.html">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\QuanLyNhaXuatBan\QuanLyNhaXuatBan.html">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\QuanLyDonHang\QuanLyDonHang.html">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\QuanLyNhapSach\QuanLyNhapSach.html">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\QuanLyPheDuyetSach\QuanLyPheDuyetSach.html" />
+    <Content Include="views\QuanLyQuanTriVien\QuanLyQuanTriVien.html">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\QuanLySach\QuanLySach.html">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\QuanLyTacGia\QuanLyTacGia.html" />
+    <Content Include="views\ThongTinCaNhan\ThongTinCaNhan.html" />
+    <Content Include="views\ViewOrder\ViewOrder.html">
+      <SubType>Code</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="models\" />
+    <Folder Include="public\" />
+    <Folder Include="public\admin\" />
+    <Folder Include="public\admin\css\" />
+    <Folder Include="public\admin\images\" />
+    <Folder Include="public\admin\js\" />
+    <Folder Include="public\css\" />
+    <Folder Include="public\images\" />
+    <Folder Include="public\images\HinhAnhSach\" />
+    <Folder Include="public\images\IconTaiKhoan\" />
+    <Folder Include="public\javascripts\" />
+    <Folder Include="public\js\" />
+    <Folder Include="public\js\Scripts\" />
+    <Folder Include="public\js\Scripts\controllers\" />
+    <Folder Include="public\js\Scripts\plugin\" />
+    <Folder Include="public\lib\" />
+    <Folder Include="public\lib\bootstrap\" />
+    <Folder Include="public\lib\bootstrap\dist\" />
+    <Folder Include="public\lib\bootstrap\dist\css\" />
+    <Folder Include="public\lib\bootstrap\dist\fonts\" />
+    <Folder Include="public\lib\bootstrap\dist\js\" />
+    <Folder Include="public\lib\jquery-validation-unobtrusive\" />
+    <Folder Include="public\lib\jquery-validation\" />
+    <Folder Include="public\lib\jquery-validation\dist\" />
+    <Folder Include="public\lib\jquery\" />
+    <Folder Include="public\lib\jquery\dist\" />
+    <Folder Include="public\stylesheets\" />
+    <Folder Include="public\user\" />
+    <Folder Include="public\user\fonts\" />
+    <Folder Include="public\user\image\" />
+    <Folder Include="public\user\image\cache\" />
+    <Folder Include="public\user\image\cache\data\" />
+    <Folder Include="public\user\image\data\" />
+    <Folder Include="public\user\image\background\" />
+    <Folder Include="public\user\jquery\" />
+    <Folder Include="public\user\jquery\nivo-slider\" />
+    <Folder Include="public\user\jquery\ui\" />
+    <Folder Include="public\user\jquery\ui\external\" />
+    <Folder Include="public\user\jquery\ui\themes\" />
+    <Folder Include="public\user\jquery\ui\themes\ui-lightness\" />
+    <Folder Include="public\user\js\" />
+    <Folder Include="public\user\js\bootstrap\" />
+    <Folder Include="public\user\js\bxslider\" />
+    <Folder Include="public\user\js\colorbox\" />
+    <Folder Include="public\user\js\elevate\" />
+    <Folder Include="public\user\js\fancybox\" />
+    <Folder Include="public\user\js\jquery\" />
+    <Folder Include="public\user\js\photo-swipe\" />
+    <Folder Include="public\user\js\sl\" />
+    <Folder Include="public\user\stylesheet\" />
+    <Folder Include="routes\" />
+    <Folder Include="routes\admin\" />
+    <Folder Include="routes\user\" />
+    <Folder Include="views\" />
+    <Folder Include="views\Login\" />
+    <Folder Include="views\Home\" />
+    <Folder Include="views\DangKy\" />
+    <Folder Include="views\LienHe\" />
+    <Folder Include="views\DonDatHang\" />
+    <Folder Include="views\DatHang\" />
+    <Folder Include="views\ThongTinCaNhan\" />
+    <Folder Include="views\QuanLyPheDuyetSach\" />
+    <Folder Include="views\ViewOrder\" />
+    <Folder Include="views\QuanLyDanhMuc\" />
+    <Folder Include="views\Layout\" />
+    <Folder Include="views\QuanLyTacGia\" />
+    <Folder Include="views\QuanLySach\" />
+    <Folder Include="views\QuanLyQuanTriVien\" />
+    <Folder Include="views\QuanLyNhapSach\" />
+    <Folder Include="views\QuanLyDonHang\" />
+    <Folder Include="views\QuanLyNhaXuatBan\" />
+  </ItemGroup>
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

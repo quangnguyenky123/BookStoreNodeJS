@@ -1,0 +1,563 @@
+﻿<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, , initial-scale=1.0">
+	<title>Book Store</title>
+	<script>
+		if (navigator.userAgent.match(/Android/i)) {
+			var viewport = document.querySelector("meta[name=viewport]");
+		}
+		if (navigator.userAgent.match(/Android/i)) {
+			window.scrollTo(0, 1);
+		}
+	</script>
+
+	<link href="/user/stylesheet/bootstrap.css" rel="stylesheet" />
+	<link href="/user/stylesheet/cloud-zoom.css" rel="stylesheet" />
+	<link href="/user/stylesheet/stylesheet.css" rel="stylesheet" />
+	<link href="/user/stylesheet/font-awesome.css" rel="stylesheet" />
+	<link href="/user/stylesheet/slideshow.css" rel="stylesheet" />
+	<link href="/user/stylesheet/jquery.prettyPhoto.css" rel="stylesheet" />
+	<link href="/user/stylesheet/camera.css" rel="stylesheet" />
+	<link href="/user/stylesheet/superfish.css" rel="stylesheet" />
+	<link href="/user/stylesheet/photoswipe.css" rel="stylesheet" />
+	<link href="/user/stylesheet/jquery.bxslider.css" rel="stylesheet" />
+	<link href="/user/stylesheet/colorbox.css" rel="stylesheet" />
+	<link href="/user/stylesheet/responsive.css" rel="stylesheet" />
+	<link href="/user/stylesheet/custom.css" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+		  crossorigin="anonymous">
+
+
+	<script type="text/javascript" src="/user/js/jquery/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="/user/js/jquery/jquery-migrate-1.2.1.min.js"></script>
+	<script type="text/javascript" src="/user/jquery/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="/user/jquery/ui/jquery-ui-1.8.16.custom.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/user/jquery/ui/themes/ui-lightness/jquery-ui-1.8.16.custom.css" />
+	<script type="text/javascript" src="/user/jquery/ui/external/jquery.cookie.js"></script>
+	<script type="text/javascript" src="/user/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+	<link rel="stylesheet" type="text/css" href="/user/js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+	<script type="text/javascript" src="/user/js/colorbox/jquery.colorbox.js"></script>
+	<script type="text/javascript" src="/user/jquery/jquery.jcarousel.min.js"></script>
+	<script type="text/javascript" src="/user/jquery/jquery.cycle.js"></script>
+
+	<script type="text/javascript" src="/user/js/bootstrap/bootstrap.js"></script>
+	<script type="text/javascript" src="/user/jquery/tabs.js"></script>
+
+	<script type="text/javascript" src="/user/js/jQuery.equalHeights.js"></script>
+	<script type="text/JavaScript" src="/user/js/elevate/jquery.elevatezoom.js"></script>
+	<script type="text/javascript" src="/user/js/jquery.prettyPhoto.js"></script>
+	<script type="text/javascript" src="/user/js/jscript_zjquery.anythingslider.js"></script>
+	<script type="text/javascript" src="/user/jquery/nivo-slider/jquery.nivo.slider.pack.js"></script>
+	<script type="text/javascript" src="/user/js/jquery.mobile-events.js"></script>
+	<script type="text/javascript" src="/user/js/superfish.js"></script>
+	<script type="text/javascript" src="/user/js/script.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
+	<script type="text/javascript" language="javascript" src="/user/js/bxslider/jquery.bxslider.js"></script>
+	<link rel="stylesheet" type="text/css" href="/user/stylesheet/livesearch.css" />
+	<script src="/js/Scripts/controllers/HomeController.js"></script>
+	
+
+</head>
+
+<body class="common-home" ng-app="loadHome" ng-controller="myCtrl" ng-init="myFunctionLoadData()">
+	<div class="swipe-left"></div>
+	<div id="body">
+		<div class="swipe">
+			<div class="swipe-menu">
+				<ul class="links">
+					<li class="first"><a class="active" href="/"><i class="fa fa-home"></i> Trang chủ</a></li>
+					<li id="li-login-status">
+					</li>
+					<li ng-repeat="HomeControl in HomeControls"><a style="font-size:14px" ng-href="{{HomeControl.href}}"><i class="{{HomeControl.icon}}"></i>{{HomeControl.control}}</a></li>
+					<li><a style="font-size:14px" href="/LienHe"><i class="fas fa-phone-square"></i> Liên hệ</a></li>
+					<li ng-click="myFunctionLogin()" class="li-login"><a class="login"><i class="fa fa-sign-in-alt"></i> {{LoginOrLogouts}}</a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="page">
+			<div id="shadow">
+				<div class="shadow"></div>
+				<header id="header" style="background-image: url('../../../user/image/background/2.jpg');background-size: 100%;">
+					<div class="top-line" style="background-image: url('../../../user/image/background/2.jpg');background-size: 100%;">
+						<div class="container">
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="toprow">
+										<ul class="links">
+											<li class="first">
+												<a class="active" style="font-size:14px" href="/"><i class="fas fa-home"></i> TRANG CHỦ</a>
+											</li>
+											<li ng-repeat="HomeControl in HomeControls"><a style="font-size:14px" ng-href="{{HomeControl.href}}"><i class="{{HomeControl.icon}}"></i>{{HomeControl.control}}</a></li>
+											<li><a style="font-size:14px" href="/LienHe"><i class="fas fa-phone-square"></i> Liên hệ</a></li>
+											<!--<li><a style="font-size:14px" href="/TinTuc"><i class="fas fa-newspaper"></i> Tin tức</a></li>-->
+										</ul>
+										<div class="clear"></div>
+									</div>
+									<div style="float:right" class="toprow">
+										<ul style="float:right" class="links">
+											<li class="btn btn-home-login " style="border: 2px solid white; border-radius: 0.8rem;" ng-click="myFunctionLogin()"><a class="active" style="font-size:14px; padding-left: inherit;">{{LoginOrLogouts}}</a></li>
+										</ul>
+										<div class="clear"></div>
+									</div>
+									<div class="cart-position">
+										<div class="cart-inner">
+											<div id="cart">
+												<div class="heading">
+													<span class="link_a" ng-click="myFunctionMyCart()">
+														<i class="fa fa-shopping-cart mycart"></i>
+														<b class="mycart">Giỏ hàng:</b>
+														<span class="mycart" id="cart-total2">0</span>
+														<span class="mycart" id="cart-total">0 sách</span>
+														<span class="clear"></span>
+													</span>
+												</div>
+												<div ng-repeat="HelloUser in HelloUsers" class="toprow">
+													<h3>Xin chào: <span style="color: orangered">{{HelloUser.TenQuanTriVien}}</span></h3>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="top_color" style="background-image: url('../../../user/image/background/2.jpg');background-size: 100%;">
+						<div class="container">
+							<div class="row">
+								<div class="col-sm-12">
+									<div id="logo" ng-click="myFunctionReloadPage()">
+										<a style="text-transform: uppercase; font-size: 120px;">
+											<h1 style="font-size: 40px;font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif">
+												Book<b style="color: brown;">Store</b>
+											</h1>
+										</a>
+									</div>
+
+									<div id="search">
+										<div class="inner">
+											<div id="btn-search" class="button-search" ng-click="myFunctionLoadSearchBook()">
+												<i class="fa fa-search" ></i>
+												<span>Tìm kiếm</span>
+											</div>
+											<input id="input-search" type="text" name="search" placeholder="Nhập tên sách" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="toprow-1">
+									<a class="swipe-control"><i class="fa fa-align-justify"></i></a>
+								</div>
+							</div>
+						</div>
+						<div id="smenu" class="row">
+							<div class="col-sm-12">
+								<div id="menu-gadget">
+									<div id="menu-icon">Danh mục sách</div>
+									<ul id="nav" class="sf-menu-phone">
+										<li class="button_sale all-book" ng-click="myFunctionLoadAllBook(true,false)"><a><b>Tất cả</b></a></li>
+										<li class="cate-list" ng-repeat="danhMuc in danhMucs" ng-click="myFunctionLoadBookByCategory(danhMuc._id, true)">
+											<a>{{danhMuc.TenDanhMuc}}</a>
+										</li>
+									</ul>
+								</div>
+								<div id="menu">
+									<ul class="row sf-menu">
+										<li style="width: auto; text-align: center; padding-right: 0px; padding-left: 0px;margin-right:5px;" class="col-sm-1 button_sale cate" ng-click="myFunctionLoadAllBook(true,false)">
+											<a style="padding-left: 20px;width: 100%;padding-right: 20px;" class="cate-item all-book" >
+												<b>Tất cả</b>
+											</a>
+										</li>
+										<li ng-repeat="danhMuc in danhMucs" ng-click="myFunctionLoadBookByCategory(danhMuc._id, true)" style="width: auto;text-align:center;padding-left: 0px;padding-right: 0px;margin-left:0px;margin-right:5px;" class="col-sm-2 cate cate-list">
+											<a style="width:100%;padding-left:0px;padding-right:0px;">{{danhMuc.TenDanhMuc}}</a>
+										</li>
+									</ul>
+									<div class="clear"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</header>
+				<section>
+					<div id="container" style="background-image: url('../../../user/image/background/11.jpg');background-size: 100%;">
+						<p id="back-top"> <a href="#top"><span></span></a> </p>
+						<div class="container">
+							<div id="notification"></div>
+							<div class="row">
+								<div class="col-sm-12 " id="content">
+									<script type="text/javascript">
+										if ($(".container").width() > 723) {
+											(function ($) {
+												$.fn.equalHeights = function (minHeight, maxHeight) {
+													tallest = (minHeight) ? minHeight : 0;
+													this.each(function () {
+														if ($(this).height() > tallest) {
+															tallest = $(this).height()
+														}
+													});
+													if ((maxHeight) && tallest > maxHeight) tallest = maxHeight;
+													return this.each(function () {
+														$(this).height(tallest)
+													})
+												}
+											})(jQuery)
+											$(window).load(function () {
+												if ($(".maxheight-feat").length) {
+													$(".maxheight-feat").equalHeights()
+												}
+											});
+										};
+									</script>
+									<!---------------------------SÁCH MỚI----------------------------->
+									<div class="box specials" id="book-new" style="padding-top: 10px;">
+										<div class="box-heading" ng-init="myFunctionLoadDataNewBook()">Sách mới</div>
+										<div class="box-content">
+											<div class="box-product">
+												<ul class="row">
+													<li class="col-sm-2" ng-repeat="sachMoi in sachMois">
+														<div>
+															<div class="image2">
+																<a title="{{sachMoi.TenSach}}">
+																	<img class="book-img" id="" ng-src="images/HinhAnhSach/{{sachMoi.HinhAnh}}" alt="{{sachMoi.HinhAnh}}" />
+																</a>
+																<a class="colorbox4 quick-view-button" ng-click="myFunctionProductView(sachMoi._id)">
+																	<i class="fa fa-search-plus "></i>
+																</a>
+															</div>
+															<div class="inner">
+																<div class="f-left maxheight-feat">
+																	<div class="name book-title book-title1" title="{{sachMoi.TenSach}}">
+																		<a> {{(sachMoi.Tap != null && sachMoi.Tap != "") ? sachMoi.TenSach + " (Tập " + sachMoi.Tap + ")" : sachMoi.TenSach}}</a>
+																	</div>
+																	<div class="description book-description book-description1" title="{{sachMoi.TomTat}}">{{sachMoi.TomTat}}</div>
+																</div>
+																<div class="cart-button">
+																	<div class="price">
+																		<span class="price-display">{{sachMoi.Gia|number}}</span>&nbsp;<sup>đ</sup>
+																	</div>
+																	<div class="cart" ng-click="myFunctionAddToCart(sachMoi._id)">
+																		<a title="Add to cart"
+																		   class="button addToCart tooltip-1 add-to-cart">
+																			<i class="fa fa-shopping-cart"></i>
+																			<span>Add to cart</span>
+																		</a>
+																	</div>
+																	<span class="clear"></span>
+																</div>
+																<div class="clear">
+																</div>
+															</div>
+															<div class="clear"></div>
+														</div>
+													</li>
+												</ul>
+											</div>
+											<div id="paging-new" class="pagination">
+											</div>
+										</div>
+									</div>
+
+									<!----------------------------SÁCH BÁN CHẠY------------------------------------>
+									<div class="box specials" id="book-hot">
+										<div class="box-heading special-heading" ng-init="myFunctionLoadDataHotBook()">Sách bán chạy</div>
+										<div class="box-content">
+											<div class="box-product">
+												<ul class="row">
+													<li class="col-sm-2" ng-repeat="sachBanChay in sachBanChays">
+														<div>
+															<div class="image2">
+																<a title="{{sachBanChay.TenSach}}">
+																	<img class="book-img" id="" ng-src="images/HinhAnhSach/{{sachBanChay.HinhAnh}}" alt="{{sachBanChay.HinhAnh}}" />
+																</a>
+																<a rel="colorbox" class="colorbox4 quick-view-button" ng-click="myFunctionProductView(sachBanChay._id)">
+																	<i class="fa fa-search-plus "></i>
+																</a>
+															</div>
+															<div class="inner">
+																<div class="f-left maxheight-feat">
+																	<div class="name book-title book-title1" title="{{sachBanChay.TenSach}}">
+																		<a>{{(sachBanChay.Tap != null && sachBanChay.Tap != "") ? sachBanChay.TenSach + " (Tập " + sachBanChay.Tap + ")" : sachBanChay.TenSach}}</a>
+																	</div>
+																	<div class="description book-description book-description1" title="{{sachBanChay.TomTat}}">{{sachBanChay.TomTat}}</div>
+																</div>
+																<div class="cart-button">
+																	<div class="price">
+																		<span class="price-display">{{sachBanChay.Gia|number}}</span>&nbsp;<sup>đ</sup>
+																	</div>
+																	<div class="cart" ng-click="myFunctionAddToCart(sachBanChay._id)">
+																		<a title="Add to cart"
+																		   class="button addToCart tooltip-1 add-to-cart">
+																			<i class="fa fa-shopping-cart"></i>
+																			<span>Add to cart</span>
+																		</a>
+																	</div>
+																	<span class="clear"></span>
+																</div>
+																<div class="clear">
+																</div>
+															</div>
+															<div class="clear"></div>
+														</div>
+													</li>
+												</ul>
+											</div>
+											<div id="paging-hot" class="pagination">
+											</div>
+										</div>
+									</div>
+									<!----------------------------SÁCH SẮP BÁN------------------------------------>
+									<div class="box specials" id="book-selling-soon">
+										<div class="box-heading special-heading" ng-init="myFunctionLoadDataSellingSoonBook()">Sách sắp bán</div>
+										<div class="box-content">
+											<div class="box-product">
+												<ul class="row">
+													<li class="col-sm-2" ng-repeat="sachSapBan in sachSapBans">
+														<div>
+															<div class="image2">
+																<a title="{{sachSapBan.TenSach}}">
+																	<img class="book-img" id="" ng-src="images/HinhAnhSach/{{sachSapBan.HinhAnh}}" alt="{{sachSapBan.HinhAnh}}" />
+																</a>
+																<a rel="colorbox" class="colorbox4 quick-view-button" ng-click="myFunctionProductView(sachSapBan._id)">
+																	<i class="fa fa-search-plus "></i>
+																</a>
+															</div>
+															<div class="inner">
+																<div class="f-left maxheight-feat">
+																	<div class="name book-title book-title1" title="{{sachSapBan.TenSach}}">
+																		<a>{{(sachSapBan.Tap != null && sachSapBan.Tap != "") ? sachSapBan.TenSach + " (Tập " + sachSapBan.Tap + ")" : sachSapBan.TenSach}}</a>
+																	</div>
+																	<div class="description book-description book-description1" title="{{sachSapBan.TomTat}}">{{sachSapBan.TomTat}}</div>
+																</div>
+																<div class="cart-button">
+																	<div class="price">
+																		<span class="price-display">{{sachSapBan.Gia|number}}</span>&nbsp;<sup>đ</sup>
+																	</div>
+																	<div class="cart">
+																		<a title="Add to cart"
+																		   class="button addToCart tooltip-1 disable">
+																			<i class="fa fa-shopping-cart"></i>
+																			<span>Add to cart</span>
+																		</a>
+																	</div>
+																	<span class="clear"></span>
+																</div>
+																<div class="clear">
+																</div>
+															</div>
+															<div class="clear"></div>
+														</div>
+													</li>
+												</ul>
+											</div>
+											<div id="paging-sellingsoon" class="pagination">
+											</div>
+										</div>
+									</div>
+									<!----------------------------------------------Sách theo tên danh mục--------------------------------------------->
+									<div class="box featured" id="book-by-category" style="display: none; padding-top: 10px;">
+										<div id="category-book" class="box-heading"></div>
+										<div class="box-content">
+											<div class="box-product">
+												<ul class="row">
+													<li class="col-sm-2" ng-repeat="bookByCategory in bookByCategorys">
+														<div>
+															<div class="image2">
+																<a title="{{bookByCategory.TenSach}}"><img class="book-img" id="" ng-src="images/HinhAnhSach/{{bookByCategory.HinhAnh}}" alt="{{bookByCategory.HinhAnh}}" /></a>
+																<a rel="colorbox" class="colorbox4 quick-view-button" ng-click="myFunctionProductView(bookByCategory._id)">
+																	<i class="fa fa-search-plus "></i>
+																</a>
+															</div>
+															<div class="inner">
+																<div class="f-left maxheight-feat">
+																	<div class="name book-title book-title1" title="{{bookByCategory.TenSach}}">
+																		<a>{{(bookByCategory.Tap != null && bookByCategory.Tap != "") ? bookByCategory.TenSach + " (Tập " + bookByCategory.Tap + ")" : bookByCategory.TenSach}}</a>
+																	</div>
+																	<div class="description book-description book-description1" title="{{bookByCategory.TomTat}}">{{bookByCategory.TomTat}}</div>
+																</div>
+																<div class="cart-button">
+																	<div class="price">
+																		<span class="price-display">{{bookByCategory.Gia|number}}</span>&nbsp;<sup>đ</sup>
+																	</div>
+																	<div class="cart">
+																		<a title="Add to cart"
+																		   class="button addToCart tooltip-1 add-to-cart">
+																			<i class="fa fa-shopping-cart" ng-click="myFunctionAddToCart(bookByCategory._id)"></i>
+																			<span>Add to cart</span>
+																		</a>
+																	</div>
+																	<span class="clear"></span>
+																</div>
+																<div class="clear">
+																</div>
+															</div>
+															<div class="clear"></div>
+														</div>
+													</li>
+												</ul>
+											</div>
+											<div id="paging-category" class="pagination"></div>
+											<div class="clear"></div>
+										</div>
+									</div>
+								</div>
+								<div class="clear"></div>
+							</div>
+						</div>
+					</div>
+					<!----------------------------------------------POP UP XEM THÔNG TIN SÁCH--------------------------------------------->
+					<div class="modal fade product_view" id="product_view">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<a href="#" data-dismiss="modal" class="class pull-right"><span class="fas fa-times"></span></a>
+									<h3 class="modal-title" style="margin-left:20px;">Chi tiết sách</h3>
+								</div>
+								<div class="modal-body">
+									<div id="row-detail-book" class="row">
+										<div class="col-md-4 product_img">
+											<img id="detail-image" ng-src="images/HinhAnhSach/{{productView[0].HinhAnh}}" class="img-responsive">
+										</div>
+										<div class="col-md-8 product_content">
+											<p style="font-weight:bold;color :black;" id="detail-title">{{(productView[0].Tap != null && productView[0].Tap != "") ? productView[0].TenSach + " (Tập " + productView[0].Tap + ")" : productView[0].TenSach}}</p>
+											<p style="font-weight:bold; color: red; font-size: 20px;"  >{{productView[0].MaSoSach}}</p>
+											<p><span id="detail-part"></span></p>
+											<p><span style="font-weight:bold" id="detail-author">{{productView[0].TenTacGia[0].TenTacGia}}</span></p>
+											<p>
+												<span class="detail-description" id="detail-description">{{productView[0].TomTat}}</span>
+												<span data-status="1" class="detail-description" id="read-more" ng-click="myFunctionReadMore()">Xem thêm</span>
+											</p>
+											<p style="color:black;font-size:20px" id="cost"><b>Giá</b> :&nbsp;<span id="detail-price">{{productView[0].Gia|number}}</span><sup>đ</sup></></p>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<div class="btn-ground">
+										<button ng-click="myFunctionAddToCart(productView[0]._id)" style="margin-right:15px;" id="detail-add-to-cart" type="button" class="btn btn-primary"><span class="fas fa-shopping-cart"></span>&nbsp;Thêm vào giỏ hàng</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!----------------------------------POP UP GIO HANG-------------------------------------------->
+					<div id="cart-modal" class="modal fade" role="dialog">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Giỏ hàng của bạn</h4>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<div id="all-item" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+											<table id="cart-content" class="table" style="color:black">
+												<thead>
+													<tr>
+														<th>Tên sách</th>
+														<th>Số lượng</th>
+														<th>Đơn giá</th>
+														<th></th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr ng-repeat="item in listItem">
+														<td>{{item.title}}</td>
+														<td>
+															<input ng-model="item.quantity" ng-mouseup="myFunctionQuantity(item.id)"  style="max-width:55px;color:black;padding-right:0px;" type="number" min="1" class="form-control txt-quantity" step="1" onkeydown="return false">
+														<td>{{item.price|number}}&nbsp;<sup>đ</sup></td>
+														<td><button ng-click="myFunctionDeleteItemInCart(item.id)" class="btn btn-danger delete-cart-item"><span class="fas fa-times"></span></button></td>
+													</tr>
+												</tbody>
+											</table>
+											<hr />
+											<div id="price-cart" style="float:right;color:black;font-size:20px;">
+												<span>Tổng tiền :&nbsp;<b id="total-price">0&nbsp;<u>đ</u></b></span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger modal-btn" data-dismiss="modal">Tiếp tục mua sách</button>
+									<button id="btn-pay" ng-click="myFunctionBuy()" type="button" class="btn btn-success modal-btn">Đặt hàng</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="clear"></div>
+				</section>
+				<footer>
+					<div class="footer-top">
+						<div class="container">
+							<!--<div class="row">
+								<div class="col-sm-3">
+									<h3>Thông tin</h3>
+									<ul>
+										<li><a href="#">Giúp đỡ</a></li>
+										<li><a href="#">Chính sách</a></li>
+										<li><a href="#">Nội quy thư viện</a></li>
+									</ul>
+								</div>
+								<div class="col-sm-3">
+									<h3>Dịch vụ</h3>
+									<ul>
+										<li><a href="#">Sách yêu thích nhất</a></li>
+										<li><a href="#">Sách mới về</a></li>
+										<li><a href="#"></a></li>
+									</ul>
+								</div>
+								<div class="col-sm-3">
+									<h3>Liên hệ</h3>
+									<ul>
+										<li><a href="#">Admin : admin@gmail.com.vn</a></li>
+										<li><a href="#">Hotline : 09887665454</a></li>
+									</ul>
+								</div>
+								<div class="col-sm-3">
+									<h3>Tài khoản</h3>
+									<ul>
+										<li><a href="#">Thông tin cá nhân</a></li>
+										<li><a href="#">Lịch sử mượn sách</a></li>
+										<li><a href="#">Danh sách yêu thích</a></li>
+									</ul>
+								</div>
+							</div>-->
+						</div>
+					</div>
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-12">
+								<div id="powered">
+									<span>©  BookStore Management. All right reserved.<br /></span>
+									<div class="clear"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</footer>
+			</div>
+		</div>
+	</div>
+
+
+
+	<script src="/user/js/bootstrap-notify.min.js"></script>
+	<!--<script src="/user/js/History.js"></script>-->
+	<script src="/js/Scripts/plugin/mustache.min.js"></script>
+	<script src="/js/Scripts/plugin/jquery.twbsPagination.min.js"></script>
+	<script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="/js/bootstrap-confirmation.js"></script>
+
+</body>
+
+</html>
+
